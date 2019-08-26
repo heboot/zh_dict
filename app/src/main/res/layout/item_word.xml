@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y60">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/x20"
+            android:text="universe"
+            android:textColor="#ff2b2d30"
+            android:textSize="@dimen/x19"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_add_book"
+            android:layout_width="@dimen/x60"
+            android:layout_height="@dimen/y28"
+            android:layout_marginRight="@dimen/x20"
+            android:background="@drawable/bg_ec_white"
+            android:gravity="center"
+            android:text="生词"
+            android:textColor="#2B2D30"
+            android:textSize="@dimen/x16"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_detail"
+            android:layout_width="@dimen/x60"
+            android:layout_height="@dimen/y28"
+            android:layout_marginRight="@dimen/x5"
+            android:background="@drawable/bg_ec_black"
+            android:gravity="center"
+            android:text="详解"
+            android:textColor="#fff"
+            android:textSize="@dimen/x16"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toLeftOf="@+id/tv_add_book"
+
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="@dimen/y1"
+            android:layout_marginLeft="@dimen/x20"
+            android:layout_marginRight="@dimen/x20"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"></View>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
