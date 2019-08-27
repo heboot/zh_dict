@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y60">
+
+
+        <CheckBox
+            android:id="@+id/tv_no"
+            android:layout_width="@dimen/x25"
+            android:layout_height="@dimen/y25"
+            android:layout_marginLeft="@dimen/x20"
+            android:background="@drawable/selector_check_word_by_check"
+            android:button="@null"
+            android:enabled="false"
+            android:gravity="center"
+            android:text="A"
+            android:textColor="@drawable/selector_font_check_word"
+            android:textSize="@dimen/x17"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/x11"
+            android:text="压力"
+            android:textColor="#ff2b2d30"
+            android:textSize="@dimen/x18"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_no"
+            app:layout_constraintLeft_toRightOf="@+id/tv_no"
+            app:layout_constraintTop_toTopOf="@+id/tv_no" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

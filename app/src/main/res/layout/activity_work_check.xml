@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorPrimary">
+
+        <include
+            android:id="@+id/include_toolbar"
+            layout="@layout/layout_toolbar"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"></include>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/x20"
+            android:layout_marginTop="@dimen/y79"
+            android:text="请根据下面的单词选择正确的答案:"
+            android:textColor="#ffffffff"
+            android:textSize="@dimen/x17"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_no"
+            android:layout_width="@dimen/x25"
+            android:layout_height="@dimen/y25"
+            android:layout_marginLeft="@dimen/x20"
+            android:layout_marginTop="@dimen/y111"
+            android:background="@drawable/bg_rect_white_5"
+            android:gravity="center"
+            android:text="1"
+            android:textColor="#ff2b2d30"
+            android:textSize="@dimen/x17"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/x10"
+            android:text="present"
+            android:textColor="#ff000000"
+            android:textSize="@dimen/x20"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_no"
+            app:layout_constraintLeft_toRightOf="@+id/tv_no"
+            app:layout_constraintTop_toTopOf="@+id/tv_no" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/y107"
+            android:layout_marginRight="@dimen/x20"
+            android:text="20"
+            android:textColor="#ff2b2d30"
+            android:textSize="@dimen/x22"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:id="@+id/v1"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/y1"
+            android:layout_marginTop="@dimen/y20"
+            android:background="#2B2D30"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_no"></View>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_list"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toLeftOf="parent"
+
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/v1"></androidx.recyclerview.widget.RecyclerView>
+
+        <TextView
+            android:id="@+id/tv_next"
+            android:layout_width="@dimen/x125"
+            android:layout_height="@dimen/y40"
+            android:layout_marginTop="@dimen/y70"
+            android:background="@drawable/bg_ec_black_25"
+            android:gravity="center"
+            android:text="下一题"
+            android:textColor="#ffffffff"
+            android:textSize="@dimen/x19"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/rv_list" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

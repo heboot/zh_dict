@@ -25,7 +25,7 @@ public class ChooseActivity extends BaseActivity<ActivityChooseBinding> {
     @Override
     public void initUI() {
         setBackVisibility(View.VISIBLE);
-        binding.rvList.setLayoutManager(new LinearLayoutManager(this, RecyclerView.VERTICAL,false));
+        binding.rvList.setLayoutManager(new LinearLayoutManager(this, RecyclerView.VERTICAL, false));
     }
 
     @Override

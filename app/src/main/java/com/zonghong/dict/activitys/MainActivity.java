@@ -92,5 +92,8 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> {
         binding.qlytTeaching.setOnClickListener((v)->{
             IntentUtils.doIntent(TeachIndexActivity.class);
         });
+        binding.tvDetection.setOnClickListener((v)->{
+            IntentUtils.doIntent(CheckWordActivity.class);
+        });
     }
 }
