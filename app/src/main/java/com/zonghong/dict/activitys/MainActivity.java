@@ -84,7 +84,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> {
 
         mSpeechSynthesizer.initTts(TtsMode.MIX);
 
-//        mSpeechSynthesizer.speak("initListener");
+        mSpeechSynthesizer.speak("语音测试");
     }
 
     @Override
