@@ -10,19 +10,24 @@ import com.zonghong.dict.activitys.RecordWordActivity;
 import com.zonghong.dict.databinding.ItemChooseBinding;
 import com.zonghong.dict.utils.IntentUtils;
 
+import java.lang.ref.WeakReference;
 import java.util.List;
 
-public class ChooseItemAdapter extends BaseQuickAdapter<String, BaseViewHolder> {
+public class ChooseLevelAdapter extends BaseQuickAdapter<String, BaseViewHolder> {
 
-    public ChooseItemAdapter(@Nullable List<String> data) {
+
+    private WeakReference<RecordWordActivity> recordWordActivityWeakReference;
+
+    public ChooseLevelAdapter(@Nullable List<String> data, WeakReference<RecordWordActivity> recordWordActivityWeakReference) {
         super(R.layout.item_choose, data);
+        this.recordWordActivityWeakReference = recordWordActivityWeakReference;
     }
 
     @Override
     protected void convert(BaseViewHolder helper, String item) {
         ItemChooseBinding binding = DataBindingUtil.bind(helper.itemView);
         binding.getRoot().setOnClickListener((v) -> {
-            IntentUtils.doIntent(RecordWordActivity.class);
+            recordWordActivityWeakReference.get().showShijiWordListFragment();
         });
     }
 }

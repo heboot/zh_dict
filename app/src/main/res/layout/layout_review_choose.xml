@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <com.qmuiteam.qmui.layout.QMUILinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/container"
+        android:layout_width="@dimen/x300"
+        android:layout_height="@dimen/y50"
+        android:background="#fff"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:gravity="center"
+                android:text="小学词汇"
+                android:textColor="#ff2b2d30"
+                android:textSize="@dimen/x20"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <CheckBox
+                android:id="@+id/cb"
+                android:layout_width="@dimen/x20"
+                android:layout_height="@dimen/y20"
+                android:layout_gravity="right|center_vertical"
+                android:layout_marginRight="@dimen/x27"
+                android:background="@drawable/selector_check_word_by_review"
+                android:button="@null"
+                android:enabled="false"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"></CheckBox>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.qmuiteam.qmui.layout.QMUILinearLayout>
+</layout>

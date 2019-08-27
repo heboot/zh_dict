@@ -3,6 +3,7 @@ package com.zonghong.dict.utils;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
+import android.view.View;
 
 import androidx.databinding.DataBindingUtil;
 
@@ -35,5 +36,15 @@ public class DetailTipView extends QMUILinearLayout {
         binding.container.setRadiusAndShadow(
                 getResources().getDimensionPixelOffset(R.dimen.x10)
                 , getResources().getDimensionPixelOffset(R.dimen.y5), 0.30f);
+        binding.llytContainer.setOnClickListener((v) -> {
+            if (binding.getRoot().getVisibility() == View.VISIBLE) {
+                binding.getRoot().setVisibility(View.GONE);
+            }
+        });
+    }
+
+    public void show() {
+        binding.getRoot().setVisibility(View.VISIBLE);
+        binding.llytContainer.setVisibility(View.VISIBLE);
     }
 }

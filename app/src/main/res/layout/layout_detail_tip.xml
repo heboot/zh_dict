@@ -1,16 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout>
 
-    <com.qmuiteam.qmui.layout.QMUILinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/llyt_container"
         android:layout_width="match_parent"
-        android:id="@+id/container"
-        android:layout_height="@dimen/y335">
+        android:layout_height="match_parent"
+        android:background="@android:color/transparent"
+        android:gravity="center">
 
-        <TextView
-            android:layout_width="wrap_content"
+        <com.qmuiteam.qmui.layout.QMUILinearLayout
+            android:id="@+id/container"
+            android:layout_width="@dimen/x335"
             android:layout_height="wrap_content"
-            android:text="universe"
-            android:textColor="#ff2b2d30"
-            android:textSize="@dimen/x19" />
-    </com.qmuiteam.qmui.layout.QMUILinearLayout>
+            android:background="#ffffff"
+            android:gravity="center"
+            android:minHeight="@dimen/y100">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="universe"
+                android:textColor="#ff2b2d30"
+                android:textSize="@dimen/x19" />
+        </com.qmuiteam.qmui.layout.QMUILinearLayout>
+    </LinearLayout>
 </layout>
