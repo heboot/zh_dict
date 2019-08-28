@@ -7,6 +7,7 @@ import com.zonghong.dict.base.BaseActivity;
 import com.zonghong.dict.databinding.ActivityCheckResultBinding;
 
 public class CheckWorkResultActivity extends BaseActivity<ActivityCheckResultBinding> {
+
     @Override
     protected int getLayoutId() {
         return R.layout.activity_check_result;

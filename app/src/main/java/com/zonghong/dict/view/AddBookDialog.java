@@ -1,6 +1,8 @@
 package com.zonghong.dict.view;
 
 import android.app.Dialog;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.Gravity;
@@ -11,6 +13,7 @@ import android.view.Window;
 import android.view.WindowManager;
 
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.DialogFragment;
 
 import com.zonghong.dict.R;
@@ -32,7 +35,7 @@ public class AddBookDialog extends DialogFragment {
         WindowManager.LayoutParams params = window.getAttributes();
         params.gravity = Gravity.CENTER;
         window.setAttributes(params);
-//        window.setBackgroundDrawable(ContextCompat.getDrawable(getActivity(), R.drawable.circle5_white));
+        window.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 //        window.setWindowAnimations(R.style.BottomDialog_Animation);
         //设置边距
         DisplayMetrics dm = new DisplayMetrics();
