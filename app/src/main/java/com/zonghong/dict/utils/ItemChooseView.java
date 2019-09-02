@@ -37,4 +37,8 @@ public class ItemChooseView extends QMUILinearLayout {
                 , getResources().getDimensionPixelOffset(R.dimen.y5), 0.30f);
     }
 
+    public void setTitle(String text){
+        binding.tvTitle.setText(text);
+    }
+
 }

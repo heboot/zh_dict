@@ -2,8 +2,10 @@ package com.zonghong.dict.activitys;
 
 import android.view.View;
 
+import com.zonghong.dict.MAPP;
 import com.zonghong.dict.R;
 import com.zonghong.dict.base.BaseActivity;
+import com.zonghong.dict.common.ChooseType;
 import com.zonghong.dict.databinding.ActivityTeachIndexBinding;
 import com.zonghong.dict.utils.IntentUtils;
 
@@ -32,11 +34,11 @@ public class TeachIndexActivity extends BaseActivity<ActivityTeachIndexBinding> 
 
     @Override
     public void initListener() {
-        binding.qlytBook.setOnClickListener((v)->{
+        binding.qlytBook.setOnClickListener((v) -> {
             IntentUtils.doIntent(ChooseActivity.class);
         });
-        binding.qlytRecite.setOnClickListener((v)->{
-            IntentUtils.doIntent(ChooseActivity.class);
+        binding.qlytRecite.setOnClickListener((v) -> {
+            IntentUtils.intent2ChooseActivity("0", ChooseType.CHOOSE_TYPE);
         });
     }
 }

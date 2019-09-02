@@ -15,6 +15,7 @@ public class MAPP extends Application {
 
     private Activity currentActivity;
 
+
     @Override
     public void onCreate() {
         super.onCreate();
@@ -64,4 +65,5 @@ public class MAPP extends Application {
     public void setCurrentActivity(Activity currentActivity) {
         this.currentActivity = currentActivity;
     }
+
 }

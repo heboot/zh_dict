@@ -40,8 +40,12 @@ public class MKey {
 
     public static final String NUMBER = "number";
 
-     public static final String TOTALPRICE  = "totalPrice";
-    public static final String TOTAL_PRICE  = "total_price";
+
+    public static final String TYPE_ID = "type_id";
+
+
+    public static final String TOTALPRICE = "totalPrice";
+    public static final String TOTAL_PRICE = "total_price";
 
     public static final String BALANCE = "balance";
 
@@ -54,6 +58,10 @@ public class MKey {
     public static final String MONEY = "money";
 
     public static final String MOBILE = "mobile";
+
+    public static final String WORD_ID = "word_id";
+    public static final String PAGE = "page";
+
 
     public static final String PASSWORD = "password";
 

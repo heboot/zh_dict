@@ -7,6 +7,7 @@
         android:layout_height="@dimen/y60">
 
         <TextView
+            android:id="@+id/tv_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/x20"

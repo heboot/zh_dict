@@ -8,6 +8,7 @@ import android.view.View;
 import androidx.databinding.DataBindingUtil;
 
 import com.qmuiteam.qmui.layout.QMUILinearLayout;
+import com.waw.hr.mutils.bean.WordDetailBean;
 import com.zonghong.dict.MAPP;
 import com.zonghong.dict.R;
 import com.zonghong.dict.databinding.LayoutDetailTipBinding;
@@ -43,7 +44,8 @@ public class DetailTipView extends QMUILinearLayout {
         });
     }
 
-    public void show() {
+    public void show(WordDetailBean wordDetailBean) {
+        binding.tvInfo.setText(wordDetailBean.getTitle() + "\n" + wordDetailBean.getComment() + "\n" + wordDetailBean.getExample());
         binding.getRoot().setVisibility(View.VISIBLE);
         binding.llytContainer.setVisibility(View.VISIBLE);
     }

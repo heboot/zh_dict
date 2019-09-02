@@ -46,7 +46,7 @@ public abstract class BaseFragment<T extends ViewDataBinding> extends Fragment i
 
     protected Map<String, Object> params;
 
-    protected int pageSize = 15, sp = 1, total;
+    protected int num = 15, page = 1, total;
 
     protected QMUITipDialog tipDialog;
 

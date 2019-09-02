@@ -87,7 +87,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/y6"
-                    android:text="分类"
+                    android:text="复习"
                     android:textColor="#A9A9A9"
                     android:textSize="@dimen/x9" />
 

@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import androidx.databinding.DataBindingUtil;
 
 import com.qmuiteam.qmui.layout.QMUILinearLayout;
+import com.waw.hr.mutils.bean.WordTypeBean;
 import com.zonghong.dict.MAPP;
 import com.zonghong.dict.R;
 import com.zonghong.dict.databinding.LayoutReviewChooseBinding;
@@ -15,6 +16,8 @@ import com.zonghong.dict.databinding.LayoutReviewChooseBinding;
 public class ReviewChooseView extends QMUILinearLayout {
 
     private LayoutReviewChooseBinding binding;
+
+    private WordTypeBean wordTypeBean;
 
     public ReviewChooseView(Context context) {
         super(context);
@@ -38,11 +41,30 @@ public class ReviewChooseView extends QMUILinearLayout {
                 , getResources().getDimensionPixelOffset(R.dimen.y5), 0.30f);
         binding.container.setOnClickListener((v) -> {
             if (binding.cb.isChecked()) {
+                wordTypeBean.setCheck(false);
                 binding.cb.setChecked(false);
             } else {
+                wordTypeBean.setCheck(true);
                 binding.cb.setChecked(true);
             }
         });
+    }
+
+    public WordTypeBean getWordTypeBean() {
+        return wordTypeBean;
+    }
+
+    public void setWordTypeBean(WordTypeBean wordTypeBean) {
+        this.wordTypeBean = wordTypeBean;
+        binding.tvTitle.setText(wordTypeBean.getTitle());
+        if (wordTypeBean.isCheck()) {
+            binding.cb.setChecked(true);
+        }
+    }
+
+
+    public boolean isCheck() {
+        return binding.cb.isChecked();
     }
 
     public void setBlackBackground() {
