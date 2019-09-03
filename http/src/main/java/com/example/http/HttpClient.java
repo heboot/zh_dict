@@ -2,7 +2,10 @@ package com.example.http;
 
 
 import com.waw.hr.mutils.base.BaseBean;
+import com.waw.hr.mutils.bean.CheckResBean;
+import com.waw.hr.mutils.bean.CheckWordBean;
 import com.waw.hr.mutils.bean.WordDetailBean;
+import com.waw.hr.mutils.bean.WordListBaseBean;
 import com.waw.hr.mutils.bean.WordListBean;
 import com.waw.hr.mutils.bean.WordTypeBean;
 
@@ -81,11 +84,18 @@ public interface HttpClient {
     Observable<BaseBean<List<WordTypeBean>>> read(@QueryMap Map<String, Object> params);
 
     @GET("word/read")
-    Observable<BaseBean<List<WordListBean>>> word_read(@QueryMap Map<String, Object> params);
+    Observable<BaseBean<WordListBaseBean>> word_read(@QueryMap Map<String, Object> params);
 
 
     @GET("vocab/read")
     Observable<BaseBean<WordDetailBean>> vocab_read(@QueryMap Map<String, Object> params);
+
+
+    @GET("test/get")
+    Observable<BaseBean<List<CheckWordBean>>> test_get(@QueryMap Map<String, Object> params);
+
+    @GET("res/grade")
+    Observable<BaseBean<CheckResBean>> grade(@QueryMap Map<String, Object> params);
 
 
 }

@@ -12,6 +12,7 @@ import com.waw.hr.mutils.bean.WordTypeBean;
 import com.zonghong.dict.MAPP;
 import com.zonghong.dict.R;
 import com.zonghong.dict.databinding.LayoutReviewChooseBinding;
+import com.zonghong.dict.utils.TTSUtils;
 
 public class ReviewChooseView extends QMUILinearLayout {
 
@@ -34,20 +35,33 @@ public class ReviewChooseView extends QMUILinearLayout {
         initView();
     }
 
+    private OnClickListener onClickListener;
+
     private void initView() {
         binding = DataBindingUtil.inflate(LayoutInflater.from(MAPP.mapp), R.layout.layout_review_choose, this, true);
         binding.container.setRadiusAndShadow(
                 getResources().getDimensionPixelOffset(R.dimen.x25)
                 , getResources().getDimensionPixelOffset(R.dimen.y5), 0.30f);
-        binding.container.setOnClickListener((v) -> {
-            if (binding.cb.isChecked()) {
-                wordTypeBean.setCheck(false);
-                binding.cb.setChecked(false);
-            } else {
-                wordTypeBean.setCheck(true);
-                binding.cb.setChecked(true);
-            }
-        });
+
+
+        onClickListener =
+                (v) -> {
+                    if (binding.cb.isChecked()) {
+                        wordTypeBean.setCheck(false);
+                        binding.cb.setChecked(false);
+                    } else {
+                        wordTypeBean.setCheck(true);
+                        binding.cb.setChecked(true);
+                    }
+                };
+
+        binding.container.setOnClickListener(onClickListener);
+        binding.cb.setOnClickListener(onClickListener);
+
+
+//        binding.tvTitle.setOnClickListener((v) -> {
+//            TTSUtils.speak(wordTypeBean.getTitle());
+//        });
     }
 
     public WordTypeBean getWordTypeBean() {
@@ -59,6 +73,8 @@ public class ReviewChooseView extends QMUILinearLayout {
         binding.tvTitle.setText(wordTypeBean.getTitle());
         if (wordTypeBean.isCheck()) {
             binding.cb.setChecked(true);
+        } else {
+            binding.cb.setChecked(false);
         }
     }
 

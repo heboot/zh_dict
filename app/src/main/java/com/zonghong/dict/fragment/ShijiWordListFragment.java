@@ -12,6 +12,7 @@ import com.waw.hr.mutils.MKey;
 import com.waw.hr.mutils.StringUtils;
 import com.waw.hr.mutils.base.BaseBean;
 import com.waw.hr.mutils.bean.WordDetailBean;
+import com.waw.hr.mutils.bean.WordListBaseBean;
 import com.waw.hr.mutils.bean.WordListBean;
 import com.waw.hr.mutils.bean.WordTypeBean;
 import com.zonghong.dict.R;
@@ -71,7 +72,6 @@ public class ShijiWordListFragment extends BaseFragment<ActivityWordListBinding>
 
     @Override
     public void initUI() {
-        binding.includeToolbar.tvTitle.setText("识记");
         binding.rvList.setLayoutManager(new LinearLayoutManager(_mActivity, RecyclerView.VERTICAL, false));
     }
 
@@ -80,9 +80,11 @@ public class ShijiWordListFragment extends BaseFragment<ActivityWordListBinding>
         page = 1;
         typeId = getArguments().getString(MKey.TYPE_ID);
         if (StringUtils.isEmpty(typeId)) {
+            binding.includeToolbar.tvTitle.setText("复习");
             wordListBeans = (List<WordListBean>) getArguments().getSerializable(MKey.DATA);
             pageDatas();
         } else {
+            binding.includeToolbar.tvTitle.setText("识记");
             getData();
         }
     }
@@ -90,29 +92,40 @@ public class ShijiWordListFragment extends BaseFragment<ActivityWordListBinding>
     private void pageDatas() {
         List<WordListBean> datas = new ArrayList<>();
         if (page == 1) {
-            datas = wordListBeans.subList(page == 1 ? 0 : page, 16);
-        } else if ((page + 1) * 16 >= wordListBeans.size()) {
-            datas = wordListBeans.subList(page * 16, wordListBeans.size());
+            if (wordListBeans.size() > 8) {
+                datas = wordListBeans.subList(page == 1 ? 0 : page, 8);
+            } else {
+                datas = wordListBeans.subList(page == 1 ? 0 : page, wordListBeans.size());
+            }
+        } else if (wordListBeans.size() < page * 8) {
+            datas = wordListBeans.subList((page - 1) * 8, wordListBeans.size());
         } else {
-            datas = wordListBeans.subList(page * 16, (page + 1) * 16);
+            datas = wordListBeans.subList((page - 1) * 8, page * 8);
         }
 
 
         if (wordAdapter == null) {
-            if (wordListBeans != null && wordListBeans.size() > 16) {
-                wordAdapter = new WordAdapter(datas, new WeakReference(ShijiWordListFragment.this));
-            } else {
-                wordAdapter = new WordAdapter(datas, new WeakReference(ShijiWordListFragment.this));
-            }
+            wordAdapter = new WordAdapter(datas, new WeakReference(ShijiWordListFragment.this));
             binding.rvList.setAdapter(wordAdapter);
         } else {
-            wordAdapter.getData().clear();
-            wordAdapter.notifyDataSetChanged();
-            wordAdapter.addData(datas);
+//            wordAdapter.getData().clear();
+//            wordAdapter.notifyDataSetChanged();
+            wordAdapter.setNewData(datas);
             wordAdapter.notifyDataSetChanged();
         }
+
+        total = wordListBeans.size() / 8;
+        if (wordListBeans.size() % 8 != 0) {
+            total++;
+        }
+        binding.tvPageTip.setText("第" + page + "页/共" + total + "页");
     }
 
+    @Override
+    public boolean onBackPressedSupport() {
+        _mActivity.finish();
+        return super.onBackPressedSupport();
+    }
 
     @Override
     public void initListener() {
@@ -130,12 +143,19 @@ public class ShijiWordListFragment extends BaseFragment<ActivityWordListBinding>
 
         });
         binding.tvRight.setOnClickListener((v) -> {
-//            if (page == 1) {
-//                ToastUtils.showToast("已经是第一页了");
-//                return;
-//            }
+            if (page >= total) {
+                ToastUtils.showToast("已经是最后一页了");
+                return;
+            }
             page = page + 1;
-            getData();
+            if (StringUtils.isEmpty(typeId)) {
+                pageDatas();
+            } else {
+                getData();
+            }
+        });
+        binding.includeToolbar.vBack.setOnClickListener((v) -> {
+            _mActivity.finish();
         });
     }
 
@@ -144,22 +164,24 @@ public class ShijiWordListFragment extends BaseFragment<ActivityWordListBinding>
         params.put(MKey.TYPE_ID, typeId);
         params.put(MKey.NUM, 8);
         params.put(MKey.PAGE, page);
-        HttpClient.Builder.getServer().word_read(params).observeOn(AndroidSchedulers.mainThread()).subscribeOn(Schedulers.io()).subscribe(new HttpObserver<List<WordListBean>>() {
+        HttpClient.Builder.getServer().word_read(params).observeOn(AndroidSchedulers.mainThread()).subscribeOn(Schedulers.io()).subscribe(new HttpObserver<WordListBaseBean>() {
             @Override
-            public void onSuccess(BaseBean<List<WordListBean>> baseBean) {
+            public void onSuccess(BaseBean<WordListBaseBean> baseBean) {
+                total = baseBean.getData().getNum();
+                binding.tvPageTip.setText("第" + page + "页/共" + total + "页");
                 if (wordAdapter == null) {
-                    wordAdapter = new WordAdapter(baseBean.getData(), new WeakReference(ShijiWordListFragment.this));
+                    wordAdapter = new WordAdapter(baseBean.getData().getList(), new WeakReference(ShijiWordListFragment.this));
                     binding.rvList.setAdapter(wordAdapter);
                 } else {
                     wordAdapter.getData().clear();
                     wordAdapter.notifyDataSetChanged();
-                    wordAdapter.addData(baseBean.getData());
+                    wordAdapter.addData(baseBean.getData().getList());
                     wordAdapter.notifyDataSetChanged();
                 }
             }
 
             @Override
-            public void onError(BaseBean<List<WordListBean>> baseBean) {
+            public void onError(BaseBean<WordListBaseBean> baseBean) {
                 tipDialog = DialogUtils.getFailDialog(_mActivity, baseBean.getMsg(), true);
                 tipDialog.show();
             }
@@ -194,11 +216,15 @@ public class ShijiWordListFragment extends BaseFragment<ActivityWordListBinding>
 
     }
 
-    public void showAddView() {
-        if (addBookDialog == null) {
-            addBookDialog = AddBookDialog.newInstance();
-        }
+    public void showAddView(WordListBean wordListBean) {
+        addBookDialog = AddBookDialog.newInstance(wordListBean);
         addBookDialog.show(getFragmentManager(), "");
 
+    }
+
+    @Override
+    public void onDestroyView() {
+        _mActivity.finish();
+        super.onDestroyView();
     }
 }

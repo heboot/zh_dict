@@ -2,11 +2,15 @@ package com.zonghong.dict.activitys;
 
 import android.view.View;
 
+import com.waw.hr.mutils.MKey;
 import com.zonghong.dict.R;
 import com.zonghong.dict.base.BaseActivity;
 import com.zonghong.dict.databinding.ActivityCheckResultBinding;
 
 public class CheckWorkResultActivity extends BaseActivity<ActivityCheckResultBinding> {
+
+
+    private String tip;
 
     @Override
     protected int getLayoutId() {
@@ -27,11 +31,14 @@ public class CheckWorkResultActivity extends BaseActivity<ActivityCheckResultBin
 
     @Override
     public void initData() {
-
+        tip = getIntent().getStringExtra(MKey.DATA);
+        binding.tvResult.setText(tip);
     }
 
     @Override
     public void initListener() {
-
+        binding.tvOk.setOnClickListener((v) -> {
+            finish();
+        });
     }
 }

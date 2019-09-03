@@ -42,7 +42,7 @@ public abstract class BaseActivity<T extends ViewDataBinding> extends FragmentAc
 
     protected Observable<Object> rxObservable;
 
-    public int pageSize = 15, sp = 1, total;
+    public int num = 15, page = 1, total;
 
     protected final SupportActivityDelegate mDelegate = new SupportActivityDelegate(this);
 

@@ -58,11 +58,12 @@
                     android:background="@mipmap/icon_shiji" />
 
                 <TextView
+                    android:id="@+id/tv_index"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/y6"
                     android:text="首页"
-                    android:textColor="#A9A9A9"
+                    android:textColor="@color/colorPrimary"
                     android:textSize="@dimen/x9" />
 
             </LinearLayout>
@@ -83,7 +84,7 @@
                     android:background="@mipmap/icon_fuxi" />
 
                 <TextView
-
+                    android:id="@+id/tv_review"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/y6"

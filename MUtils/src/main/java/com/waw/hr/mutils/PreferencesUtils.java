@@ -22,7 +22,7 @@ import java.io.ObjectOutputStream;
 
 public class PreferencesUtils {
 
-    public static String PREFERENCE_NAME = "wawhr";
+    public static String PREFERENCE_NAME = "zhdict";
 
     private PreferencesUtils() {
         throw new AssertionError();

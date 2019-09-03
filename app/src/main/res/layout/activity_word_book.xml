@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorPrimary">
+
+        <include
+            android:id="@+id/include_toolbar"
+            layout="@layout/layout_toolbar"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"></include>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_list"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/y20"
+            android:layout_marginBottom="@dimen/y25"
+            app:layout_constraintBottom_toTopOf="@+id/tv_ok"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/include_toolbar"></androidx.recyclerview.widget.RecyclerView>
+
+
+        <View
+            android:id="@+id/v1"
+            android:layout_width="@dimen/x1"
+            android:layout_height="@dimen/y1"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"></View>
+
+        <TextView
+            android:id="@+id/tv_ok"
+            android:layout_width="@dimen/x116"
+            android:layout_height="@dimen/y35"
+            android:layout_marginRight="@dimen/x8"
+            android:layout_marginBottom="@dimen/y25"
+            android:background="@drawable/bg_ec_black_25"
+            android:gravity="center"
+            android:text="重新识记"
+            android:textColor="#ffffffff"
+            android:textSize="@dimen/x19"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toLeftOf="@+id/v1" />
+
+        <TextView
+            android:id="@+id/tv_del"
+            android:layout_width="@dimen/x116"
+            android:layout_height="@dimen/y35"
+            android:layout_marginLeft="@dimen/x8"
+            android:layout_marginBottom="@dimen/y25"
+            android:background="@drawable/bg_ec_black_25"
+            android:gravity="center"
+            android:text="删除"
+            android:textColor="#ffffffff"
+            android:textSize="@dimen/x19"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toRightOf="@+id/v1" />
+
+        <TextView
+            android:id="@+id/tv_check_all"
+            android:layout_width="@dimen/x100"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical|left"
+            android:paddingLeft="@dimen/x20"
+            android:text="全选"
+            android:textColor="#ff2b2d30"
+            android:textSize="15sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/rv_list" />
+
+        <View
+            android:layout_width="@dimen/x15"
+            android:layout_height="@dimen/y15"
+            android:layout_marginLeft="@dimen/x55"
+            android:background="@drawable/icon_check_fouse"
+            android:textSize="15sp"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_check_all"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/tv_check_all"></View>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -39,7 +39,6 @@
                     android:layout_marginRight="@dimen/x27"
                     android:background="@drawable/selector_check_word_by_review"
                     android:button="@null"
-                    android:enabled="false"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
                     app:layout_constraintTop_toTopOf="parent"></CheckBox>

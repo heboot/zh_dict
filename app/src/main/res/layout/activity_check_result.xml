@@ -35,8 +35,7 @@
                 android:layout_marginTop="@dimen/y60"
                 android:layout_marginRight="@dimen/x25"
                 android:layout_marginBottom="@dimen/y60"
-                android:text="您的词汇量检测成绩是56分。
-您的词汇量约200-300，相当于初中三年级水平，只能认识部分生活中简单的名词，无法进行交流/阅读/写作，建议背诵小学词汇和初中词汇。"
+                android:text=""
                 android:textColor="#ff2b2d30"
                 android:textSize="@dimen/x17" />
 
@@ -45,6 +44,7 @@
 
 
         <TextView
+            android:id="@+id/tv_ok"
             android:layout_width="@dimen/x125"
             android:layout_height="@dimen/y40"
             android:layout_marginTop="@dimen/y45"

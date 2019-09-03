@@ -14,7 +14,6 @@
             android:layout_marginLeft="@dimen/x20"
             android:background="@drawable/selector_check_word_by_check"
             android:button="@null"
-            android:enabled="false"
             android:gravity="center"
             android:text="A"
             android:textColor="@drawable/selector_font_check_word"
@@ -24,6 +23,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
+            android:id="@+id/tv_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/x11"

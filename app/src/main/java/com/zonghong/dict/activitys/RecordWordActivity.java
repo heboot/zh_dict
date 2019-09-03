@@ -6,6 +6,7 @@ import com.zonghong.dict.R;
 import com.zonghong.dict.base.BaseActivity;
 import com.zonghong.dict.databinding.ActivityRecordIndexBinding;
 import com.zonghong.dict.fragment.ReviewChooseFragment;
+import com.zonghong.dict.fragment.ReviewWordListChooseFragment;
 import com.zonghong.dict.fragment.ShijiChooseFragment;
 import com.zonghong.dict.fragment.ShijiWordListFragment;
 
@@ -22,6 +23,8 @@ public class RecordWordActivity extends BaseActivity<ActivityRecordIndexBinding>
     private ShijiWordListFragment shijiWordListFragment;
 
     private ISupportFragment currentFragment;
+
+    private ReviewWordListChooseFragment reviewWordListChooseFragment;
 
     private ShijiWordListFragment reviewWordListFragment;
 
@@ -52,12 +55,16 @@ public class RecordWordActivity extends BaseActivity<ActivityRecordIndexBinding>
             currentFragment = shijiChooseFragment;
             binding.ivIndex.setBackgroundResource(R.mipmap.icon_shiji);
             binding.ivClassify.setBackgroundResource(R.mipmap.icon_fuxi);
+            binding.tvReview.setTextColor(0xffa9a9a9);
+            binding.tvIndex.setTextColor(0xff9BD4FF);
         });
         binding.llytClassify.setOnClickListener((v) -> {
             mDelegate.showHideFragment(reviewChooseFragment, currentFragment);
             currentFragment = reviewChooseFragment;
             binding.ivIndex.setBackgroundResource(R.mipmap.icon_shiji_normal);
             binding.ivClassify.setBackgroundResource(R.mipmap.icon_fuxi_fouse);
+            binding.tvIndex.setTextColor(0xffa9a9a9);
+            binding.tvReview.setTextColor(0xff9BD4FF);
         });
     }
 
@@ -67,8 +74,16 @@ public class RecordWordActivity extends BaseActivity<ActivityRecordIndexBinding>
         currentFragment = shijiWordListFragment;
     }
 
-    public void showReviewWordListFragment(List<WordListBean> wordListBeanList) {
+    public void showReviewWordListChooseFragment(String typeId) {
+        reviewWordListChooseFragment = ReviewWordListChooseFragment.newInstance(typeId);
+        mDelegate.start(reviewWordListChooseFragment);
+        currentFragment = reviewWordListChooseFragment;
+    }
 
+    public void showReviewWordListChooseFragment(List<WordListBean> wordListBeans) {
+        reviewWordListFragment = ShijiWordListFragment.newInstance(wordListBeans);
+        mDelegate.start(reviewWordListFragment);
+        currentFragment = reviewWordListFragment;
     }
 
 

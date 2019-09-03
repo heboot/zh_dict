@@ -74,7 +74,7 @@ public class WordDetailDialog extends DialogFragment {
 
     public void setWordDetailBean(WordDetailBean wordDetailBean) {
         this.wordDetailBean = wordDetailBean;
-        binding.tvInfo.setText(wordDetailBean.getTitle() + "\n" + wordDetailBean.getComment() + "\n" + wordDetailBean.getExample());
+        binding.tvInfo.setText(wordDetailBean.getTitle() + "\n" + wordDetailBean.getComment().replace(",,", "\n") + "\n" + wordDetailBean.getExample().replace(",,", "\n"));
 
     }
 

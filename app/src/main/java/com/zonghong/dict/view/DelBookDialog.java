@@ -13,7 +13,6 @@ import android.view.Window;
 import android.view.WindowManager;
 
 import androidx.annotation.Nullable;
-import androidx.core.content.ContextCompat;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.DialogFragment;
 
@@ -23,16 +22,19 @@ import com.zonghong.dict.R;
 import com.zonghong.dict.databinding.LayoutAddBookTipBinding;
 import com.zonghong.dict.utils.BookUtils;
 
-public class AddBookDialog extends DialogFragment {
+import java.io.Serializable;
+import java.util.List;
 
-    private WordListBean wordListBean;
+public class DelBookDialog extends DialogFragment {
+
+    private List<WordListBean> wordListBeanList;
 
     private LayoutAddBookTipBinding binding;
 
-    public static AddBookDialog newInstance(WordListBean wordListBean) {
+    public static DelBookDialog newInstance(List<WordListBean> wordListBeanList) {
         Bundle args = new Bundle();
-        args.putSerializable(MKey.DATA, wordListBean);
-        AddBookDialog fragment = new AddBookDialog();
+        args.putSerializable(MKey.DATA, (Serializable) wordListBeanList);
+        DelBookDialog fragment = new DelBookDialog();
         fragment.setArguments(args);
         return fragment;
     }
@@ -58,9 +60,10 @@ public class AddBookDialog extends DialogFragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.layout_add_book_tip, container, false);
         binding = DataBindingUtil.bind(view);
-        wordListBean = (WordListBean) getArguments().getSerializable(MKey.DATA);
+        binding.tvTitle.setText("是否删除选中的单词？");
+        wordListBeanList = (List<WordListBean>) getArguments().getSerializable(MKey.DATA);
         binding.qrbOk.setOnClickListener((v) -> {
-            BookUtils.addWordBook(wordListBean);
+            BookUtils.delWordBook(wordListBeanList);
             dismiss();
         });
         binding.qrbNo.setOnClickListener((v) -> {

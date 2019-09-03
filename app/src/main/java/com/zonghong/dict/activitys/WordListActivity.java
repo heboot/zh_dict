@@ -1,49 +1,47 @@
 package com.zonghong.dict.activitys;
 
-import android.view.View;
-
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
+import com.waw.hr.mutils.MKey;
+import com.waw.hr.mutils.bean.WordListBean;
 import com.zonghong.dict.R;
-import com.zonghong.dict.adapter.CheckWorkAdapter;
-import com.zonghong.dict.adapter.WordAdapter;
 import com.zonghong.dict.base.BaseActivity;
 import com.zonghong.dict.databinding.ActivityWordListBinding;
+import com.zonghong.dict.databinding.ActivityWordListContainerBinding;
+import com.zonghong.dict.fragment.ShijiWordListFragment;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public class WordListActivity extends BaseActivity<ActivityWordListBinding> {
+public class WordListActivity extends BaseActivity<ActivityWordListContainerBinding> {
 
-    private WordAdapter wordAdapter;
+    private List<WordListBean> wordListBeans;
 
     @Override
     protected int getLayoutId() {
-        return R.layout.activity_word_list;
+        return R.layout.activity_word_list_container;
     }
 
     @Override
     public void initUI() {
-        setBackVisibility(View.VISIBLE);
-        binding.includeToolbar.tvTitle.setText("识记");
-        binding.rvList.setLayoutManager(new LinearLayoutManager(this, RecyclerView.VERTICAL, false));
+//        setBackVisibility(View.VISIBLE);
+//        binding.includeToolbar.tvTitle.setText("识记");
+//        binding.rvList.setLayoutManager(new LinearLayoutManager(this, RecyclerView.VERTICAL, false));
     }
 
     @Override
     public void initData() {
-        List<String> datas = new ArrayList<>();
-        datas.add("aaa");
-        datas.add("aaa");
-        datas.add("aaa");
-        datas.add("aaa");
-        datas.add("aaa");
-//        wordAdapter = new WordAdapter(datas);
-//        binding.rvList.setAdapter(wordAdapter);
+        wordListBeans = (List<WordListBean>) getIntent().getExtras().get(MKey.DATA) == null ? null : (List<WordListBean>) getIntent().getExtras().get(MKey.DATA);
+        if (wordListBeans == null) {
+            finish();
+        }
+        getSupportDelegate().loadRootFragment(binding.container.getId(), ShijiWordListFragment.newInstance(wordListBeans));
     }
 
     @Override
     public void initListener() {
 
+    }
+
+    @Override
+    public void onBackPressedSupport() {
+        finish();
     }
 }

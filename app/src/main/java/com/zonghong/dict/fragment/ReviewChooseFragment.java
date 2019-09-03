@@ -13,6 +13,7 @@ import com.waw.hr.mutils.bean.WordListBean;
 import com.waw.hr.mutils.bean.WordTypeBean;
 import com.zonghong.dict.R;
 import com.zonghong.dict.activitys.ChooseActivity;
+import com.zonghong.dict.activitys.RecordWordActivity;
 import com.zonghong.dict.adapter.ChooseItemAdapter;
 import com.zonghong.dict.adapter.ChooseReviewItemAdapter;
 import com.zonghong.dict.base.BaseFragment;
@@ -49,6 +50,7 @@ public class ReviewChooseFragment extends BaseFragment<ActivityReviewChooseBindi
 
     @Override
     public void initUI() {
+        binding.includeToolbar.tvTitle.setText("复习");
         binding.rvList.setLayoutManager(new LinearLayoutManager(_mActivity, RecyclerView.VERTICAL, false));
     }
 
@@ -82,20 +84,21 @@ public class ReviewChooseFragment extends BaseFragment<ActivityReviewChooseBindi
 
 
     private void getWordListData(boolean isSelect) {
-        params.put(MKey.TYPE_ID, selectIds.substring(0, selectIds.length() - 1));
-        HttpClient.Builder.getServer().word_read(params).observeOn(AndroidSchedulers.mainThread()).subscribeOn(Schedulers.io()).subscribe(new HttpObserver<List<WordListBean>>() {
-            @Override
-            public void onSuccess(BaseBean<List<WordListBean>> baseBean) {
-
-
-            }
-
-            @Override
-            public void onError(BaseBean<List<WordListBean>> baseBean) {
-                tipDialog = DialogUtils.getFailDialog(_mActivity, baseBean.getMsg(), true);
-                tipDialog.show();
-            }
-        });
+//        params.put(MKey.TYPE_ID, selectIds.substring(0, selectIds.length() - 1));
+//        HttpClient.Builder.getServer().word_read(params).observeOn(AndroidSchedulers.mainThread()).subscribeOn(Schedulers.io()).subscribe(new HttpObserver<List<WordListBean>>() {
+//            @Override
+//            public void onSuccess(BaseBean<List<WordListBean>> baseBean) {
+//
+//
+//            }
+//
+//            @Override
+//            public void onError(BaseBean<List<WordListBean>> baseBean) {
+//                tipDialog = DialogUtils.getFailDialog(_mActivity, baseBean.getMsg(), true);
+//                tipDialog.show();
+//            }
+//        });
+        ((RecordWordActivity) _mActivity).showReviewWordListChooseFragment(selectIds.substring(0, selectIds.length() - 1));
     }
 
     private void getData() {

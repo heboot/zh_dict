@@ -17,6 +17,16 @@ public class WordListBean implements Serializable {
     private String title;
     private String comment;
 
+    private boolean isCheck;
+
+    public boolean isCheck() {
+        return isCheck;
+    }
+
+    public void setCheck(boolean check) {
+        isCheck = check;
+    }
+
     public int getId() {
         return id;
     }

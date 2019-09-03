@@ -84,15 +84,15 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> {
 
         mSpeechSynthesizer.initTts(TtsMode.MIX);
 
-        mSpeechSynthesizer.speak("语音测试");
+//        mSpeechSynthesizer.speak("我太难了");
     }
 
     @Override
     public void initListener() {
-        binding.qlytTeaching.setOnClickListener((v)->{
+        binding.qlytTeaching.setOnClickListener((v) -> {
             IntentUtils.doIntent(TeachIndexActivity.class);
         });
-        binding.tvDetection.setOnClickListener((v)->{
+        binding.tvDetection.setOnClickListener((v) -> {
             IntentUtils.doIntent(CheckWordActivity.class);
         });
     }

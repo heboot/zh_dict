@@ -40,6 +40,7 @@ public class ChooseActivity extends BaseActivity<ActivityChooseBinding> {
 
     @Override
     public void initUI() {
+        binding.includeToolbar.tvTitle.setText("单词教学");
         setBackVisibility(View.VISIBLE);
         binding.rvList.setLayoutManager(new LinearLayoutManager(this, RecyclerView.VERTICAL, false));
     }

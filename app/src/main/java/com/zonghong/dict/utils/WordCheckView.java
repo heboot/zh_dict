@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.databinding.DataBindingUtil;
 
+import com.waw.hr.mutils.bean.CheckWordLocalBean;
 import com.zonghong.dict.MAPP;
 import com.zonghong.dict.R;
 import com.zonghong.dict.databinding.LayoutWorkCheckBinding;
@@ -14,6 +15,8 @@ import com.zonghong.dict.databinding.LayoutWorkCheckBinding;
 public class WordCheckView extends ConstraintLayout {
 
     private LayoutWorkCheckBinding binding;
+
+    private CheckWordLocalBean checkWordLocalBean;
 
     public WordCheckView(Context context) {
         super(context);
@@ -30,22 +33,49 @@ public class WordCheckView extends ConstraintLayout {
         initView();
     }
 
+    private OnClickListener onClickListener;
+
     private void initView() {
 
         binding = DataBindingUtil.inflate(LayoutInflater.from(MAPP.mapp), R.layout.layout_work_check, this, true);
 
-        binding.container.setOnClickListener((v) -> {
+        onClickListener = (v) -> {
             if (binding.tvNo.isChecked()) {
-                binding.tvNo.setChecked(false);
+                if (checkWordLocalBean != null) {
+                    binding.tvNo.setChecked(false);
+                }
             } else {
-                binding.tvNo.setChecked(true);
+                if (checkWordLocalBean != null) {
+                    binding.tvNo.setChecked(true);
+                }
             }
-        });
+        };
+
+        binding.container.setOnClickListener(onClickListener);
+        binding.tvNo.setOnClickListener(onClickListener);
+
+
+//        binding.tvTitle.setOnClickListener((v) -> {
+//            TTSUtils.speak(checkWordLocalBean.getTitle());
+//        });
 
 
     }
 
+    public CheckWordLocalBean getCheckWordLocalBean() {
+        return checkWordLocalBean;
+    }
 
+    public void setCheckWordLocalBean(CheckWordLocalBean checkWordLocalBean) {
+        this.checkWordLocalBean = checkWordLocalBean;
+        binding.tvTitle.setText(checkWordLocalBean.getTitle());
+        binding.tvNo.setText(checkWordLocalBean.getOption());
+        if (checkWordLocalBean.isChecked()) {
+            binding.tvNo.setChecked(true);
+        } else {
+            binding.tvNo.setChecked(false);
+        }
+    }
 }
 
 

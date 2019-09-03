@@ -2,12 +2,18 @@ package com.zonghong.dict.activitys;
 
 import android.view.View;
 
+import com.waw.hr.mutils.MKey;
+import com.waw.hr.mutils.PreferencesUtils;
+import com.waw.hr.mutils.bean.WordListBean;
 import com.zonghong.dict.MAPP;
 import com.zonghong.dict.R;
 import com.zonghong.dict.base.BaseActivity;
 import com.zonghong.dict.common.ChooseType;
 import com.zonghong.dict.databinding.ActivityTeachIndexBinding;
+import com.zonghong.dict.utils.BookUtils;
 import com.zonghong.dict.utils.IntentUtils;
+
+import java.util.List;
 
 public class TeachIndexActivity extends BaseActivity<ActivityTeachIndexBinding> {
     @Override
@@ -35,7 +41,8 @@ public class TeachIndexActivity extends BaseActivity<ActivityTeachIndexBinding> 
     @Override
     public void initListener() {
         binding.qlytBook.setOnClickListener((v) -> {
-            IntentUtils.doIntent(ChooseActivity.class);
+//            IntentUtils.intent2WordListActivity(BookUtils.getLocalWordlistBean());
+            IntentUtils.doIntent(WordBookActivity.class);
         });
         binding.qlytRecite.setOnClickListener((v) -> {
             IntentUtils.intent2ChooseActivity("0", ChooseType.CHOOSE_TYPE);

@@ -3,6 +3,7 @@
 
     <com.zonghong.dict.utils.WordCheckView xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
+        android:id="@+id/container"
         android:layout_height="@dimen/y60">
 
     </com.zonghong.dict.utils.WordCheckView>

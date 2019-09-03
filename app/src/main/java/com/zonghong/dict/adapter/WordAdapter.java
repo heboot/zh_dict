@@ -9,6 +9,7 @@ import com.waw.hr.mutils.bean.WordListBean;
 import com.zonghong.dict.R;
 import com.zonghong.dict.databinding.ItemWordBinding;
 import com.zonghong.dict.fragment.ShijiWordListFragment;
+import com.zonghong.dict.utils.TTSUtils;
 
 import java.lang.ref.WeakReference;
 import java.util.List;
@@ -30,9 +31,13 @@ public class WordAdapter extends BaseQuickAdapter<WordListBean, BaseViewHolder> 
         });
 
         binding.tvAddBook.setOnClickListener((v) -> {
-            wordListFragmentWeakReference.get().showAddView();
+            wordListFragmentWeakReference.get().showAddView(item);
         });
         binding.tvTitle.setText(item.getTitle());
+
+        binding.tvTitle.setOnClickListener((v) -> {
+            TTSUtils.speak(item.getTitle());
+        });
 
     }
 }
