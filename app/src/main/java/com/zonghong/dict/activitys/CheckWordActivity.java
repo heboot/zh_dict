@@ -39,6 +39,8 @@ public class CheckWordActivity extends BaseActivity<ActivityWorkCheckBinding> {
 
     private int totalSource = 0;
 
+    private boolean isChoose = false;
+
 
     @Override
     protected int getLayoutId() {
@@ -63,6 +65,9 @@ public class CheckWordActivity extends BaseActivity<ActivityWorkCheckBinding> {
     public void initListener() {
         binding.tvNext.setOnClickListener((v) -> {
             for (CheckWordLocalBean checkWordLocalBean : checkWorkAdapter.getData()) {
+                if (checkWordLocalBean.isChecked()) {
+                    isChoose = true;
+                }
                 if ((!checkWordLocalBean.isChecked() && checkWordLocalBean.isCorrect())
                         || (checkWordLocalBean.isChecked() && !checkWordLocalBean.isCorrect())
                         || (!checkWordLocalBean.isChecked() && !checkWordLocalBean.isCorrect())) {
@@ -74,7 +79,14 @@ public class CheckWordActivity extends BaseActivity<ActivityWorkCheckBinding> {
                 }
             }
             currentIndex = currentIndex + 1;
-            if (currentIndex >= 49) {
+
+            if (!isChoose) {
+                tipDialog = DialogUtils.getFailDialog(CheckWordActivity.this, "请先答题后再进行下一题", true);
+                tipDialog.show();
+                return;
+            }
+            isChoose = false;
+            if (currentIndex >= 50) {
                 submit();
             } else {
                 exeData();
@@ -129,6 +141,7 @@ public class CheckWordActivity extends BaseActivity<ActivityWorkCheckBinding> {
         currentCheckWordBean = checkWordBeanList.get(currentIndex);
         binding.tvTitle.setText(currentCheckWordBean.getTitle());
         binding.tvNo.setText(currentIndex + 1 + "");
+        binding.tvSource.setText(currentCheckWordBean.getGrade_every() + "");
         if (checkWorkAdapter == null) {
             checkWorkAdapter = new CheckWorkAdapter(getLocalBean(currentCheckWordBean));
             binding.rvList.setAdapter(checkWorkAdapter);

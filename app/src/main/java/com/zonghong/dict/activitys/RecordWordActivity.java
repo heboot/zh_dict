@@ -9,6 +9,7 @@ import com.zonghong.dict.fragment.ReviewChooseFragment;
 import com.zonghong.dict.fragment.ReviewWordListChooseFragment;
 import com.zonghong.dict.fragment.ShijiChooseFragment;
 import com.zonghong.dict.fragment.ShijiWordListFragment;
+import com.zonghong.dict.utils.TTSUtils;
 
 import java.util.List;
 
@@ -86,5 +87,9 @@ public class RecordWordActivity extends BaseActivity<ActivityRecordIndexBinding>
         currentFragment = reviewWordListFragment;
     }
 
-
+    @Override
+    protected void onDestroy() {
+        TTSUtils.release();
+        super.onDestroy();
+    }
 }

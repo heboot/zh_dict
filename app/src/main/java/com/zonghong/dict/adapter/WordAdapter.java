@@ -26,7 +26,7 @@ public class WordAdapter extends BaseQuickAdapter<WordListBean, BaseViewHolder> 
     @Override
     protected void convert(BaseViewHolder helper, WordListBean item) {
         ItemWordBinding binding = DataBindingUtil.bind(helper.itemView);
-        binding.getRoot().setOnClickListener((v) -> {
+        binding.tvDetail.setOnClickListener((v) -> {
             wordListFragmentWeakReference.get().showDetailView(item.getId());
         });
 
@@ -35,7 +35,7 @@ public class WordAdapter extends BaseQuickAdapter<WordListBean, BaseViewHolder> 
         });
         binding.tvTitle.setText(item.getTitle());
 
-        binding.tvTitle.setOnClickListener((v) -> {
+        binding.getRoot().setOnClickListener((v) -> {
             TTSUtils.speak(item.getTitle());
         });
 

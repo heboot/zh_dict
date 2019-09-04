@@ -16,21 +16,20 @@ public class TTSUtils {
 
     private static String TAG = "ttsutils";
 
-    private static SpeechSynthesizer mSpeechSynthesizer = SpeechSynthesizer.getInstance();
+    private static SpeechSynthesizer mSpeechSynthesizer;
 
-    {
-
-    }
-
-    public static void speak(String str) {
+    private static void init() {
+        mSpeechSynthesizer = SpeechSynthesizer.getInstance();
         mSpeechSynthesizer.setAppId(AppId/*这里只是为了让Demo运行使用的APPID,请替换成自己的id。*/);
         mSpeechSynthesizer.setApiKey(AppKey, AppSecret/*这里只是为了让Demo正常运行使用APIKey,请替换成自己的APIKey*/);
 
         // 不使用压缩传输
         mSpeechSynthesizer.setParam(SpeechSynthesizer.PARAM_AUDIO_ENCODE, SpeechSynthesizer.AUDIO_ENCODE_PCM);
         mSpeechSynthesizer.setParam(SpeechSynthesizer.PARAM_AUDIO_RATE, SpeechSynthesizer.AUDIO_BITRATE_PCM);
-        mSpeechSynthesizer.setContext(MAPP.mapp.getCurrentActivity()); // this 是Context的之类，如Activity
 
+        mSpeechSynthesizer.setParam(SpeechSynthesizer.PARAM_VOLUME, "15");
+        mSpeechSynthesizer.setContext(MAPP.mapp.getCurrentActivity()); // this 是Context的之类，如Activity
+        mSpeechSynthesizer.setStereoVolume(1.0f, 1.0f);
         mSpeechSynthesizer.setSpeechSynthesizerListener(new SpeechSynthesizerListener() {
             @Override
             public void onSynthesizeStart(String s) {
@@ -68,8 +67,22 @@ public class TTSUtils {
             }
         });
 
-        mSpeechSynthesizer.initTts(TtsMode.MIX);
+        mSpeechSynthesizer.initTts(TtsMode.ONLINE);
+    }
+
+    public static void speak(String str) {
+        if (mSpeechSynthesizer == null) {
+            init();
+        }
+
         mSpeechSynthesizer.speak(str);
+    }
+
+    public static void release() {
+        if (mSpeechSynthesizer != null) {
+            mSpeechSynthesizer.release();
+            mSpeechSynthesizer = null;
+        }
     }
 
 

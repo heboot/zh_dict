@@ -57,7 +57,7 @@ public class WorkBookView extends ConstraintLayout {
         binding.container.setOnClickListener(clickListener);
         binding.cb.setOnClickListener(clickListener);
 
-        binding.tvTitle.setOnClickListener((v) -> {
+        binding.getRoot().setOnClickListener((v) -> {
             TTSUtils.speak(wordListBean.getTitle());
         });
 
