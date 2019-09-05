@@ -19,13 +19,14 @@ import com.zonghong.dict.fragment.ShijiWordListFragment;
 import com.zonghong.dict.utils.TTSUtils;
 
 import java.lang.ref.WeakReference;
+import java.util.ArrayList;
 import java.util.List;
 
 public class WordAdapter extends BaseQuickAdapter<WordListBean, BaseViewHolder> {
 
     private WeakReference<ShijiWordListFragment> wordListFragmentWeakReference;
 
-    private TextView tvComment;
+    private List<TextView> tvComments = new ArrayList<>();
 
     private Handler handler;
 
@@ -38,8 +39,15 @@ public class WordAdapter extends BaseQuickAdapter<WordListBean, BaseViewHolder> 
         handler = new Handler() {
             @Override
             public void handleMessage(@NonNull Message msg) {
-                if (tvComment != null) {
-                    tvComment.setVisibility(View.INVISIBLE);
+                if (tvComments != null) {
+                    for (TextView textView : tvComments) {
+                        if (msg.what == (int) textView.getTag()) {
+                            textView.setVisibility(View.INVISIBLE);
+                            currentBean.setClicked(false);
+                        }
+                    }
+//                    tvComments.clear();
+//                    tvComment.setVisibility(View.INVISIBLE);
 //                    currentBean.setClicked(false);
 //                    notifyDataSetChanged();
                 }
@@ -71,9 +79,10 @@ public class WordAdapter extends BaseQuickAdapter<WordListBean, BaseViewHolder> 
             if (item.isClicked()) {
                 binding.tvComment.setText(item.getComment());
                 binding.tvComment.setVisibility(View.VISIBLE);
-                tvComment = binding.tvComment;
+                binding.tvComment.setTag(item.getId());
+                tvComments.add(binding.tvComment);
                 currentBean = item;
-                handler.sendEmptyMessageDelayed(1, 1500);
+                handler.sendEmptyMessageDelayed(item.getId(), 1500);
             }
             item.setClicked(true);
             TTSUtils.speak(item.getTitle());

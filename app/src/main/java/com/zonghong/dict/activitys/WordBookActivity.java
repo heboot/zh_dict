@@ -1,6 +1,6 @@
 package com.zonghong.dict.activitys;
 
-import android.app.Dialog;
+import android.view.View;
 
 import androidx.recyclerview.widget.GridLayoutManager;
 
@@ -18,14 +18,15 @@ import com.zonghong.dict.http.HttpObserver;
 import com.zonghong.dict.utils.BookUtils;
 import com.zonghong.dict.utils.IntentUtils;
 import com.zonghong.dict.utils.SignUtils;
-import com.zonghong.dict.view.AddBookDialog;
 import com.zonghong.dict.view.DelBookDialog;
 import com.zonghong.dict.view.WordDetailDialog;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 
 public class WordBookActivity extends BaseActivity<ActivityWordBookBinding> {
@@ -41,6 +42,8 @@ public class WordBookActivity extends BaseActivity<ActivityWordBookBinding> {
 
     private List<WordListBean> allWords = new ArrayList<>();
 
+    private boolean checkAll = false;
+
 
     @Override
     protected int getLayoutId() {
@@ -49,6 +52,7 @@ public class WordBookActivity extends BaseActivity<ActivityWordBookBinding> {
 
     @Override
     public void initUI() {
+        setBackVisibility(View.VISIBLE);
         binding.includeToolbar.tvTitle.setText("生词本");
         binding.rvList.setLayoutManager(new GridLayoutManager(this, 2));
     }
@@ -77,6 +81,29 @@ public class WordBookActivity extends BaseActivity<ActivityWordBookBinding> {
 //            page = page + 1;
 //            getData();
 //        });
+        rxObservable.subscribe(new Observer<Object>() {
+            @Override
+            public void onSubscribe(Disposable d) {
+
+            }
+
+            @Override
+            public void onNext(Object o) {
+                if (o.equals("delWord")) {
+                    getData();
+                }
+            }
+
+            @Override
+            public void onError(Throwable e) {
+
+            }
+
+            @Override
+            public void onComplete() {
+
+            }
+        });
         binding.tvOk.setOnClickListener((v) -> {
             if (wordAdapter == null || wordAdapter.getData() == null || wordAdapter.getData().size() == 0) {
                 tipDialog = DialogUtils.getInfolDialog(WordBookActivity.this, "快去添加生词吧", true);
@@ -107,10 +134,25 @@ public class WordBookActivity extends BaseActivity<ActivityWordBookBinding> {
                 tipDialog.show();
                 return;
             }
-            for (WordListBean wordListBean : wordAdapter.getData()) {
-                wordListBean.setCheck(true);
+
+            if (checkAll) {
+                for (WordListBean wordListBean : wordAdapter.getData()) {
+                    wordListBean.setCheck(false);
+                }
+                wordAdapter.notifyDataSetChanged();
+                binding.vBg.setBackgroundResource(R.drawable.bg_oval_check_black);
+                checkAll = false;
+
+            } else {
+                for (WordListBean wordListBean : wordAdapter.getData()) {
+                    wordListBean.setCheck(true);
+                }
+                wordAdapter.notifyDataSetChanged();
+                checkAll = true;
+                binding.vBg.setBackgroundResource(R.drawable.icon_check_fouse);
             }
-            wordAdapter.notifyDataSetChanged();
+
+
         });
 
         binding.tvDel.setOnClickListener((v) -> {

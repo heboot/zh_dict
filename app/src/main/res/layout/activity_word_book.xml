@@ -77,10 +77,11 @@
             app:layout_constraintTop_toBottomOf="@+id/rv_list" />
 
         <View
+            android:id="@+id/v_bg"
             android:layout_width="@dimen/x15"
             android:layout_height="@dimen/y15"
             android:layout_marginLeft="@dimen/x55"
-            android:background="@drawable/icon_check_fouse"
+            android:background="@drawable/bg_oval_check_black"
             android:textSize="15sp"
             app:layout_constraintBottom_toBottomOf="@+id/tv_check_all"
             app:layout_constraintLeft_toLeftOf="parent"

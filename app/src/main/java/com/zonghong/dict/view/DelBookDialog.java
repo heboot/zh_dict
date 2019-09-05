@@ -18,6 +18,7 @@ import androidx.fragment.app.DialogFragment;
 
 import com.waw.hr.mutils.MKey;
 import com.waw.hr.mutils.bean.WordListBean;
+import com.waw.hr.mutils.rxbus.RxBus;
 import com.zonghong.dict.R;
 import com.zonghong.dict.databinding.LayoutAddBookTipBinding;
 import com.zonghong.dict.utils.BookUtils;
@@ -64,6 +65,7 @@ public class DelBookDialog extends DialogFragment {
         wordListBeanList = (List<WordListBean>) getArguments().getSerializable(MKey.DATA);
         binding.qrbOk.setOnClickListener((v) -> {
             BookUtils.delWordBook(wordListBeanList);
+            RxBus.getInstance().post("delWord");
             dismiss();
         });
         binding.qrbNo.setOnClickListener((v) -> {

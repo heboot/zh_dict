@@ -34,6 +34,16 @@
             app:layout_constraintLeft_toRightOf="@+id/tv_no"
             app:layout_constraintTop_toTopOf="@+id/tv_no" />
 
-
+        <TextView
+            android:id="@+id/tv_comment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/x11"
+            android:textColor="#ff2b2d30"
+            android:textSize="@dimen/x18"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_no"
+            app:layout_constraintLeft_toRightOf="@+id/tv_title"
+            app:layout_constraintTop_toTopOf="@+id/tv_no" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

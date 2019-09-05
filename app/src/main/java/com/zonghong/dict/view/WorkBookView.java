@@ -40,27 +40,31 @@ public class WorkBookView extends ConstraintLayout {
 
         binding = DataBindingUtil.inflate(LayoutInflater.from(MAPP.mapp), R.layout.layout_word_book, this, true);
 
-        clickListener = (v) -> {
-            if (binding.cb.isChecked()) {
-                if (wordListBean != null) {
-                    wordListBean.setCheck(false);
-                }
-                binding.cb.setChecked(false);
-            } else {
-                if (wordListBean != null) {
-                    wordListBean.setCheck(true);
-                }
-                binding.cb.setChecked(true);
-            }
-        };
-
-        binding.container.setOnClickListener(clickListener);
-        binding.cb.setOnClickListener(clickListener);
+//        clickListener = (v) -> {
+//            if (binding.cb.isChecked()) {
+//                if (wordListBean != null) {
+//                    wordListBean.setCheck(false);
+//                }
+//                binding.cb.setChecked(false);
+//            } else {
+//                if (wordListBean != null) {
+//                    wordListBean.setCheck(true);
+//                }
+//                binding.cb.setChecked(true);
+//            }
+//        };
+//
+//        binding.container.setOnClickListener(clickListener);
+//        binding.cb.setOnClickListener(clickListener);
 
         binding.getRoot().setOnClickListener((v) -> {
             TTSUtils.speak(wordListBean.getTitle());
         });
 
+    }
+
+    public LayoutWordBookBinding getBinding() {
+        return binding;
     }
 
     public WordListBean getWordListBean() {
