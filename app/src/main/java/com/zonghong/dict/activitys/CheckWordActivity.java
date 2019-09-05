@@ -1,7 +1,10 @@
 package com.zonghong.dict.activitys;
 
+import android.os.Handler;
+import android.os.Message;
 import android.view.View;
 
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -39,7 +42,9 @@ public class CheckWordActivity extends BaseActivity<ActivityWorkCheckBinding> {
 
     private int totalSource = 0;
 
-    private boolean isChoose = false;
+    private Handler handler;
+
+    private int currentWordTime = 0;
 
 
     @Override
@@ -58,6 +63,24 @@ public class CheckWordActivity extends BaseActivity<ActivityWorkCheckBinding> {
     public void initData() {
         loadingDialog = DialogUtils.getLoadingDialog(this, "加载中", false);
         loadingDialog.show();
+        handler = new Handler() {
+            @Override
+            public void handleMessage(@NonNull Message msg) {
+                if (currentWordTime <= 0) {
+                    currentIndex = currentIndex + 1;
+                    checkWorkAdapter.setSelectBean(null);
+                    if (currentIndex >= 50) {
+                        submit();
+                    } else {
+                        exeData();
+                    }
+                } else {
+                    currentWordTime = currentWordTime - 1;
+                    binding.tvSource.setText(currentWordTime + "");
+                    sendEmptyMessageDelayed(11, 1000);
+                }
+            }
+        };
         getData();
     }
 
@@ -65,9 +88,7 @@ public class CheckWordActivity extends BaseActivity<ActivityWorkCheckBinding> {
     public void initListener() {
         binding.tvNext.setOnClickListener((v) -> {
             for (CheckWordLocalBean checkWordLocalBean : checkWorkAdapter.getData()) {
-                if (checkWordLocalBean.isChecked()) {
-                    isChoose = true;
-                }
+
                 if ((!checkWordLocalBean.isChecked() && checkWordLocalBean.isCorrect())
                         || (checkWordLocalBean.isChecked() && !checkWordLocalBean.isCorrect())
                         || (!checkWordLocalBean.isChecked() && !checkWordLocalBean.isCorrect())) {
@@ -78,14 +99,25 @@ public class CheckWordActivity extends BaseActivity<ActivityWorkCheckBinding> {
                     break;
                 }
             }
+
+
+//            for (CheckWordLocalBean checkWordLocalBean : checkWorkAdapter.getData()) {
+//                if (checkWordLocalBean.isChecked()) {
+//                    isChoose = true;
+//                }
+//            }
+//
+//            if (!isChoose) {
+//                tipDialog = DialogUtils.getFailDialog(CheckWordActivity.this, "请先答题后再进行下一题", true);
+//                tipDialog.show();
+//                return;
+//            }
+//            isChoose = false;
+
             currentIndex = currentIndex + 1;
 
-            if (!isChoose) {
-                tipDialog = DialogUtils.getFailDialog(CheckWordActivity.this, "请先答题后再进行下一题", true);
-                tipDialog.show();
-                return;
-            }
-            isChoose = false;
+            checkWorkAdapter.setSelectBean(null);
+
             if (currentIndex >= 50) {
                 submit();
             } else {
@@ -117,6 +149,7 @@ public class CheckWordActivity extends BaseActivity<ActivityWorkCheckBinding> {
     }
 
     private void submit() {
+        handler.removeMessages(11);
         params = SignUtils.getNormalParams();
         params.put("grade", totalSource);
         HttpClient.Builder.getServer().grade(params).observeOn(AndroidSchedulers.mainThread()).subscribeOn(Schedulers.io()).subscribe(new HttpObserver<CheckResBean>() {
@@ -138,10 +171,13 @@ public class CheckWordActivity extends BaseActivity<ActivityWorkCheckBinding> {
 
 
     private void exeData() {
+        handler.removeMessages(11);
         currentCheckWordBean = checkWordBeanList.get(currentIndex);
         binding.tvTitle.setText(currentCheckWordBean.getTitle());
         binding.tvNo.setText(currentIndex + 1 + "");
-        binding.tvSource.setText(currentCheckWordBean.getGrade_every() + "");
+        currentWordTime = currentCheckWordBean.getElapsed_time();
+        binding.tvSource.setText(currentCheckWordBean.getElapsed_time() + "");
+
         if (checkWorkAdapter == null) {
             checkWorkAdapter = new CheckWorkAdapter(getLocalBean(currentCheckWordBean));
             binding.rvList.setAdapter(checkWorkAdapter);
@@ -150,6 +186,7 @@ public class CheckWordActivity extends BaseActivity<ActivityWorkCheckBinding> {
             checkWorkAdapter.getData().addAll(getLocalBean(currentCheckWordBean));
             checkWorkAdapter.notifyDataSetChanged();
         }
+        handler.sendEmptyMessageDelayed(11, 1000);
     }
 
     private String[] options = {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N"};
@@ -173,4 +210,9 @@ public class CheckWordActivity extends BaseActivity<ActivityWorkCheckBinding> {
     }
 
 
+    @Override
+    protected void onDestroy() {
+        handler.removeMessages(11);
+        super.onDestroy();
+    }
 }

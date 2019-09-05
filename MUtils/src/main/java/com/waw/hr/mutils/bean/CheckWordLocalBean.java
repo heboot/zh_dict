@@ -12,6 +12,16 @@ public class CheckWordLocalBean {
 
     private int grade_every;
 
+    private int elapsed_time;
+
+    public int getElapsed_time() {
+        return elapsed_time;
+    }
+
+    public void setElapsed_time(int elapsed_time) {
+        this.elapsed_time = elapsed_time;
+    }
+
     public int getGrade_every() {
         return grade_every;
     }

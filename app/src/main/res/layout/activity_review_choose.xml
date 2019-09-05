@@ -33,8 +33,10 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_list"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:layout_marginTop="@dimen/y36"
+            android:layout_marginBottom="@dimen/y20"
+            app:layout_constraintBottom_toTopOf="@+id/tv_ok"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_title"></androidx.recyclerview.widget.RecyclerView>
@@ -43,15 +45,15 @@
             android:id="@+id/tv_ok"
             android:layout_width="@dimen/x125"
             android:layout_height="@dimen/y40"
-            android:layout_marginTop="@dimen/y30"
+            android:layout_marginBottom="@dimen/y30"
             android:background="@drawable/bg_ec_black_25"
             android:gravity="center"
             android:text="确定"
             android:textColor="#ffffffff"
             android:textSize="@dimen/x19"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/rv_list" />
+            app:layout_constraintRight_toRightOf="parent" />
 
         <TextView
             android:id="@+id/tv_check_all"

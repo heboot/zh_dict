@@ -17,10 +17,22 @@ public class CheckWordBean {
     private String result;
     private String true_translate;
     private int grade_every;
+    private int elapsed_time;
+
+
     private String option;
+
 
     public int getGrade_every() {
         return grade_every;
+    }
+
+    public int getElapsed_time() {
+        return elapsed_time;
+    }
+
+    public void setElapsed_time(int elapsed_time) {
+        this.elapsed_time = elapsed_time;
     }
 
     public void setGrade_every(int grade_every) {

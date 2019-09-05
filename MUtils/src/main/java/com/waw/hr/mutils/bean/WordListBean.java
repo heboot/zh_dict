@@ -19,6 +19,10 @@ public class WordListBean implements Serializable {
 
     private boolean isCheck;
 
+    private boolean clicked;
+
+
+
     public boolean isCheck() {
         return isCheck;
     }
@@ -57,5 +61,13 @@ public class WordListBean implements Serializable {
 
     public void setComment(String comment) {
         this.comment = comment;
+    }
+
+    public boolean isClicked() {
+        return clicked;
+    }
+
+    public void setClicked(boolean clicked) {
+        this.clicked = clicked;
     }
 }

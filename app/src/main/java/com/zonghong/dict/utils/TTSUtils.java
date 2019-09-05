@@ -26,7 +26,7 @@ public class TTSUtils {
         // 不使用压缩传输
         mSpeechSynthesizer.setParam(SpeechSynthesizer.PARAM_AUDIO_ENCODE, SpeechSynthesizer.AUDIO_ENCODE_PCM);
         mSpeechSynthesizer.setParam(SpeechSynthesizer.PARAM_AUDIO_RATE, SpeechSynthesizer.AUDIO_BITRATE_PCM);
-
+        mSpeechSynthesizer.setParam(SpeechSynthesizer.PARAM_SPEED, "4");
         mSpeechSynthesizer.setParam(SpeechSynthesizer.PARAM_VOLUME, "15");
         mSpeechSynthesizer.setContext(MAPP.mapp.getCurrentActivity()); // this 是Context的之类，如Activity
         mSpeechSynthesizer.setStereoVolume(1.0f, 1.0f);

@@ -39,20 +39,22 @@ public class WordCheckView extends ConstraintLayout {
 
         binding = DataBindingUtil.inflate(LayoutInflater.from(MAPP.mapp), R.layout.layout_work_check, this, true);
 
-        onClickListener = (v) -> {
-            if (binding.tvNo.isChecked()) {
-                if (checkWordLocalBean != null) {
-                    binding.tvNo.setChecked(false);
-                }
-            } else {
-                if (checkWordLocalBean != null) {
-                    binding.tvNo.setChecked(true);
-                }
-            }
-        };
-
-        binding.container.setOnClickListener(onClickListener);
-        binding.tvNo.setOnClickListener(onClickListener);
+//        onClickListener = (v) -> {
+//            if (binding.tvNo.isChecked()) {
+//                if (checkWordLocalBean != null) {
+//                    checkWordLocalBean.setChecked(false);
+//                }
+//                binding.tvNo.setChecked(false);
+//            } else {
+//                if (checkWordLocalBean != null) {
+//                    checkWordLocalBean.setChecked(true);
+//                }
+//                binding.tvNo.setChecked(true);
+//            }
+//        };
+//
+//        binding.container.setOnClickListener(onClickListener);
+//        binding.tvNo.setOnClickListener(onClickListener);
 
 
 //        binding.tvTitle.setOnClickListener((v) -> {
@@ -62,6 +64,11 @@ public class WordCheckView extends ConstraintLayout {
 
     }
 
+    public LayoutWorkCheckBinding getBinding() {
+        return binding;
+    }
+
+
     public CheckWordLocalBean getCheckWordLocalBean() {
         return checkWordLocalBean;
     }
@@ -70,11 +77,11 @@ public class WordCheckView extends ConstraintLayout {
         this.checkWordLocalBean = checkWordLocalBean;
         binding.tvTitle.setText(checkWordLocalBean.getTitle());
         binding.tvNo.setText(checkWordLocalBean.getOption());
-        if (checkWordLocalBean.isChecked()) {
-            binding.tvNo.setChecked(true);
-        } else {
-            binding.tvNo.setChecked(false);
-        }
+//        if (checkWordLocalBean.isChecked()) {
+//            binding.tvNo.setChecked(true);
+//        } else {
+//            binding.tvNo.setChecked(false);
+//        }
     }
 }
 
