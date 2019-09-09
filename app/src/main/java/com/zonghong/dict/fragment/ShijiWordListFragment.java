@@ -66,6 +66,17 @@ public class ShijiWordListFragment extends BaseFragment<ActivityWordListBinding>
 
 
     @Override
+    public void onSupportVisible() {
+        super.onSupportVisible();
+        page = 1;
+        if (StringUtils.isEmpty(typeId)) {
+            pageDatas();
+        } else {
+            getData();
+        }
+    }
+
+    @Override
     protected int getLayoutId() {
         return R.layout.activity_word_list;
     }
@@ -174,8 +185,8 @@ public class ShijiWordListFragment extends BaseFragment<ActivityWordListBinding>
                     binding.rvList.setAdapter(wordAdapter);
                 } else {
                     wordAdapter.getData().clear();
-                    wordAdapter.notifyDataSetChanged();
-                    wordAdapter.addData(baseBean.getData().getList());
+//                    wordAdapter.notifyDataSetChanged();
+                    wordAdapter.setNewData(baseBean.getData().getList());
                     wordAdapter.notifyDataSetChanged();
                 }
             }

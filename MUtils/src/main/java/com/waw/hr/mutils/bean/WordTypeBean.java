@@ -12,6 +12,15 @@ public class WordTypeBean {
     private String title;
 
     private boolean isCheck;
+    private boolean hasChild;
+
+    public boolean isHasChild() {
+        return hasChild;
+    }
+
+    public void setHasChild(boolean hasChild) {
+        this.hasChild = hasChild;
+    }
 
     public boolean isCheck() {
         return isCheck;

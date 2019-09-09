@@ -32,6 +32,13 @@ android {
         }
     }
 
+    // 设置apk打包命名
+    applicationVariants.all { variant ->
+        variant.outputs.all {
+            outputFileName = "${variant.applicationId}_${variant.versionName}_${variant.versionCode}.apk"
+        }
+    }
+
     dataBinding {
         enabled = true
     }

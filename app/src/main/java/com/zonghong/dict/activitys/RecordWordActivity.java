@@ -69,8 +69,8 @@ public class RecordWordActivity extends BaseActivity<ActivityRecordIndexBinding>
         });
     }
 
-    public void showShijiWordListFragment() {
-        shijiWordListFragment = ShijiWordListFragment.newInstance(typeId);
+    public void showShijiWordListFragment(String tid) {
+        shijiWordListFragment = ShijiWordListFragment.newInstance(tid);
         mDelegate.start(shijiWordListFragment);
         currentFragment = shijiWordListFragment;
     }

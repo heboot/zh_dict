@@ -32,7 +32,12 @@ public class ChooseItemAdapter extends BaseQuickAdapter<WordTypeBean, BaseViewHo
             if (chooseType == ChooseType.CHOOSE_LEVEL) {
                 IntentUtils.intent2RecordWordActivity(String.valueOf(item.getId()));
             } else if (chooseType == ChooseType.CHOOSE_TYPE) {
-                IntentUtils.intent2ChooseActivity(String.valueOf(item.getId()), ChooseType.CHOOSE_LEVEL);
+                if (item.isHasChild()) {
+                    IntentUtils.intent2ChooseActivity(String.valueOf(item.getId()), ChooseType.CHOOSE_LEVEL);
+                } else {
+                    IntentUtils.intent2RecordWordActivity(String.valueOf(item.getId()));
+                }
+
             }
 //            else if (chooseType == ChooseType.CHOOSE_TYPE_CHILD) {
 //                IntentUtils.intent2ChooseActivity(String.valueOf(item.getId()), ChooseType.CHOOSE_LEVEL);

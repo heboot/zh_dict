@@ -27,7 +27,7 @@ public class ChooseLevelAdapter extends BaseQuickAdapter<WordTypeBean, BaseViewH
     protected void convert(BaseViewHolder helper, WordTypeBean item) {
         ItemChooseBinding binding = DataBindingUtil.bind(helper.itemView);
         binding.getRoot().setOnClickListener((v) -> {
-            recordWordActivityWeakReference.get().showShijiWordListFragment();
+            recordWordActivityWeakReference.get().showShijiWordListFragment(String.valueOf(item.getId()));
         });
         binding.container.setTitle(item.getTitle());
     }

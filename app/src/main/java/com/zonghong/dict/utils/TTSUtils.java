@@ -8,6 +8,8 @@ import com.baidu.tts.client.TtsMode;
 import com.waw.hr.mutils.LogUtil;
 import com.zonghong.dict.MAPP;
 
+import java.util.Random;
+
 public class TTSUtils {
 
     private static String AppId = "17081686";
@@ -18,6 +20,8 @@ public class TTSUtils {
 
     private static SpeechSynthesizer mSpeechSynthesizer;
 
+
+    //106男 111女
     private static void init() {
         mSpeechSynthesizer = SpeechSynthesizer.getInstance();
         mSpeechSynthesizer.setAppId(AppId/*这里只是为了让Demo运行使用的APPID,请替换成自己的id。*/);
@@ -25,8 +29,9 @@ public class TTSUtils {
 
         // 不使用压缩传输
         mSpeechSynthesizer.setParam(SpeechSynthesizer.PARAM_AUDIO_ENCODE, SpeechSynthesizer.AUDIO_ENCODE_PCM);
+        mSpeechSynthesizer.setParam(SpeechSynthesizer.PARAM_SPEAKER, "111");
         mSpeechSynthesizer.setParam(SpeechSynthesizer.PARAM_AUDIO_RATE, SpeechSynthesizer.AUDIO_BITRATE_PCM);
-        mSpeechSynthesizer.setParam(SpeechSynthesizer.PARAM_SPEED, "4");
+        mSpeechSynthesizer.setParam(SpeechSynthesizer.PARAM_SPEED, "5");
         mSpeechSynthesizer.setParam(SpeechSynthesizer.PARAM_VOLUME, "15");
         mSpeechSynthesizer.setContext(MAPP.mapp.getCurrentActivity()); // this 是Context的之类，如Activity
         mSpeechSynthesizer.setStereoVolume(1.0f, 1.0f);
@@ -70,10 +75,21 @@ public class TTSUtils {
         mSpeechSynthesizer.initTts(TtsMode.ONLINE);
     }
 
+    private static Random random;
+
     public static void speak(String str) {
         if (mSpeechSynthesizer == null) {
+            random = new Random();
             init();
         }
+
+        int result = random.nextInt(10);
+        if (result % 2 == 0) {
+            mSpeechSynthesizer.setParam(SpeechSynthesizer.PARAM_SPEAKER, "111");
+        } else {
+            mSpeechSynthesizer.setParam(SpeechSynthesizer.PARAM_SPEAKER, "106");
+        }
+
 
         mSpeechSynthesizer.speak(str);
     }

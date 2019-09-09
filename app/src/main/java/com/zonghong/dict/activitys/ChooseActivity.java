@@ -69,7 +69,9 @@ public class ChooseActivity extends BaseActivity<ActivityChooseBinding> {
             @Override
             public void onSuccess(BaseBean<List<WordTypeBean>> baseBean) {
                 if (chooseItemAdapter == null) {
-                    chooseItemAdapter = new ChooseItemAdapter(baseBean.getData(), chooseType);
+                    List<WordTypeBean> list = baseBean.getData();
+                    list.get(0).setHasChild(true);
+                    chooseItemAdapter = new ChooseItemAdapter(list, chooseType);
                     binding.rvList.setAdapter(chooseItemAdapter);
                 } else {
                     chooseItemAdapter.getData().clear();
