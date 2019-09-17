@@ -11,6 +11,7 @@ import com.waw.hr.mutils.DialogUtils;
 import com.waw.hr.mutils.MKey;
 import com.waw.hr.mutils.base.BaseBean;
 import com.waw.hr.mutils.bean.WordTypeBean;
+import com.zonghong.dict.MAPP;
 import com.zonghong.dict.R;
 import com.zonghong.dict.adapter.ChooseLevelAdapter;
 import com.zonghong.dict.base.BaseFragment;
@@ -28,7 +29,6 @@ public class ShijiChooseFragment extends BaseFragment<ActivityChooseBinding> {
 
 
     private ChooseLevelAdapter chooseItemAdapter;
-
 
     private String typeId;
 
@@ -73,6 +73,7 @@ public class ShijiChooseFragment extends BaseFragment<ActivityChooseBinding> {
         HttpClient.Builder.getServer().read(params).observeOn(AndroidSchedulers.mainThread()).subscribeOn(Schedulers.io()).subscribe(new HttpObserver<List<WordTypeBean>>() {
             @Override
             public void onSuccess(BaseBean<List<WordTypeBean>> baseBean) {
+                MAPP.mapp.setLevelList(baseBean.getData());
                 if (chooseItemAdapter == null) {
                     chooseItemAdapter = new ChooseLevelAdapter(baseBean.getData(), new WeakReference(_mActivity));
                     binding.rvList.setAdapter(chooseItemAdapter);

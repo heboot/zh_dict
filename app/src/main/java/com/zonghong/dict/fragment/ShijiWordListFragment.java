@@ -15,6 +15,7 @@ import com.waw.hr.mutils.bean.WordDetailBean;
 import com.waw.hr.mutils.bean.WordListBaseBean;
 import com.waw.hr.mutils.bean.WordListBean;
 import com.waw.hr.mutils.bean.WordTypeBean;
+import com.zonghong.dict.MAPP;
 import com.zonghong.dict.R;
 import com.zonghong.dict.adapter.ChooseLevelAdapter;
 import com.zonghong.dict.adapter.WordAdapter;
@@ -97,6 +98,12 @@ public class ShijiWordListFragment extends BaseFragment<ActivityWordListBinding>
         } else {
             binding.includeToolbar.tvTitle.setText("识记");
             getData();
+            for (int i = 0; i < MAPP.mapp.getLevelList().size(); i++) {
+                if (String.valueOf(MAPP.mapp.getLevelList().get(i).getId()).equals(typeId)) {
+                    MAPP.mapp.setCurrentLevelIndex(i);
+                    break;
+                }
+            }
         }
     }
 
@@ -142,10 +149,20 @@ public class ShijiWordListFragment extends BaseFragment<ActivityWordListBinding>
     public void initListener() {
         binding.tvLeft.setOnClickListener((v) -> {
             if (page == 1) {
-                ToastUtils.showToast("已经是第一页了");
-                return;
+                if (MAPP.mapp.getCurrentLevelIndex() > 0) {
+                    if (MAPP.mapp.getLevelList().size() == 0) {
+                        ToastUtils.showToast("已经是第一页了");
+                        return;
+                    }
+                    MAPP.mapp.setCurrentLevelIndex(MAPP.mapp.getCurrentLevelIndex() - 1);
+                    page = 1;
+                    typeId = MAPP.mapp.getLevelList().get(MAPP.mapp.getCurrentLevelIndex()).getId() + "";
+                } else {
+                    ToastUtils.showToast("已经是第一关了");
+                    return;
+                }
             }
-            page = page - 1;
+            page = page - 1 < 1 ? 1 : page - 1;
             if (StringUtils.isEmpty(typeId)) {
                 pageDatas();
             } else {
@@ -155,8 +172,19 @@ public class ShijiWordListFragment extends BaseFragment<ActivityWordListBinding>
         });
         binding.tvRight.setOnClickListener((v) -> {
             if (page >= total) {
-                ToastUtils.showToast("已经是最后一页了");
-                return;
+                if (MAPP.mapp.getCurrentLevelIndex() < MAPP.mapp.getLevelList().size() - 1) {
+                    MAPP.mapp.setCurrentLevelIndex(MAPP.mapp.getCurrentLevelIndex() + 1);
+                    page = 0;
+                    typeId = MAPP.mapp.getLevelList().get(MAPP.mapp.getCurrentLevelIndex()).getId() + "";
+                } else {
+                    if (MAPP.mapp.getLevelList().size() == 0) {
+                        ToastUtils.showToast("已经是最后一页了");
+                        return;
+                    }
+                    ToastUtils.showToast("已经是最后一关了");
+                    return;
+                }
+
             }
             page = page + 1;
             if (StringUtils.isEmpty(typeId)) {
@@ -170,6 +198,12 @@ public class ShijiWordListFragment extends BaseFragment<ActivityWordListBinding>
         });
     }
 
+    @Override
+    public void onDestroy() {
+        MAPP.mapp.setCurrentLevelIndex(0);
+        super.onDestroy();
+    }
+
     private void getData() {
         params = SignUtils.getNormalParams();
         params.put(MKey.TYPE_ID, typeId);
@@ -179,7 +213,7 @@ public class ShijiWordListFragment extends BaseFragment<ActivityWordListBinding>
             @Override
             public void onSuccess(BaseBean<WordListBaseBean> baseBean) {
                 total = baseBean.getData().getNum();
-                binding.tvPageTip.setText("第" + page + "页/共" + total + "页");
+                binding.tvPageTip.setText("第" + (MAPP.mapp.getCurrentLevelIndex() + 1) + "关/共" + total + "页");
                 if (wordAdapter == null) {
                     wordAdapter = new WordAdapter(baseBean.getData().getList(), new WeakReference(ShijiWordListFragment.this));
                     binding.rvList.setAdapter(wordAdapter);

@@ -2,6 +2,7 @@ package com.zonghong.dict.activitys;
 
 import com.waw.hr.mutils.MKey;
 import com.waw.hr.mutils.bean.WordListBean;
+import com.zonghong.dict.MAPP;
 import com.zonghong.dict.R;
 import com.zonghong.dict.base.BaseActivity;
 import com.zonghong.dict.databinding.ActivityRecordIndexBinding;
@@ -60,6 +61,7 @@ public class RecordWordActivity extends BaseActivity<ActivityRecordIndexBinding>
             binding.tvIndex.setTextColor(0xff9BD4FF);
         });
         binding.llytClassify.setOnClickListener((v) -> {
+            MAPP.mapp.getLevelList().clear();
             mDelegate.showHideFragment(reviewChooseFragment, currentFragment);
             currentFragment = reviewChooseFragment;
             binding.ivIndex.setBackgroundResource(R.mipmap.icon_shiji_normal);
@@ -70,6 +72,7 @@ public class RecordWordActivity extends BaseActivity<ActivityRecordIndexBinding>
     }
 
     public void showShijiWordListFragment(String tid) {
+        isShiji = true;
         shijiWordListFragment = ShijiWordListFragment.newInstance(tid);
         mDelegate.start(shijiWordListFragment);
         currentFragment = shijiWordListFragment;
@@ -87,9 +90,12 @@ public class RecordWordActivity extends BaseActivity<ActivityRecordIndexBinding>
         currentFragment = reviewWordListFragment;
     }
 
+    public boolean isShiji = false;
+
     @Override
     protected void onDestroy() {
         TTSUtils.release();
+        MAPP.mapp.getLevelList().clear();
         super.onDestroy();
     }
 }

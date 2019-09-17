@@ -41,7 +41,6 @@ public class TeachIndexActivity extends BaseActivity<ActivityTeachIndexBinding> 
     @Override
     public void initListener() {
         binding.qlytBook.setOnClickListener((v) -> {
-//            IntentUtils.intent2WordListActivity(BookUtils.getLocalWordlistBean());
             IntentUtils.doIntent(WordBookActivity.class);
         });
         binding.qlytRecite.setOnClickListener((v) -> {

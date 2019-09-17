@@ -7,6 +7,10 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.waw.hr.mutils.bean.WordTypeBean;
+
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 public class MAPP extends Application {
@@ -15,6 +19,9 @@ public class MAPP extends Application {
 
     private Activity currentActivity;
 
+    private List<WordTypeBean> levelList = new ArrayList<>();
+
+    private int currentLevelIndex = 0;
 
     @Override
     public void onCreate() {
@@ -56,6 +63,22 @@ public class MAPP extends Application {
 
             }
         });
+    }
+
+    public List<WordTypeBean> getLevelList() {
+        return levelList;
+    }
+
+    public void setLevelList(List<WordTypeBean> levelList) {
+        this.levelList = levelList;
+    }
+
+    public int getCurrentLevelIndex() {
+        return currentLevelIndex;
+    }
+
+    public void setCurrentLevelIndex(int currentLevelIndex) {
+        this.currentLevelIndex = currentLevelIndex;
     }
 
     public Activity getCurrentActivity() {
