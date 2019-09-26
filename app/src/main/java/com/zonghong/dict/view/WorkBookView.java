@@ -1,11 +1,11 @@
 package com.zonghong.dict.view;
 
 import android.content.Context;
+import android.support.constraint.ConstraintLayout;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 
-import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.databinding.DataBindingUtil;
+import android.databinding.DataBindingUtil;
 
 import com.waw.hr.mutils.bean.WordListBean;
 import com.zonghong.dict.MAPP;

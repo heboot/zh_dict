@@ -1,10 +1,8 @@
 package com.zonghong.dict.fragment;
 
 import android.os.Bundle;
-import android.view.View;
-
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 
 import com.example.http.HttpClient;
 import com.waw.hr.mutils.DialogUtils;
@@ -14,13 +12,10 @@ import com.waw.hr.mutils.base.BaseBean;
 import com.waw.hr.mutils.bean.WordDetailBean;
 import com.waw.hr.mutils.bean.WordListBaseBean;
 import com.waw.hr.mutils.bean.WordListBean;
-import com.waw.hr.mutils.bean.WordTypeBean;
 import com.zonghong.dict.MAPP;
 import com.zonghong.dict.R;
-import com.zonghong.dict.adapter.ChooseLevelAdapter;
 import com.zonghong.dict.adapter.WordAdapter;
 import com.zonghong.dict.base.BaseFragment;
-import com.zonghong.dict.databinding.ActivityChooseBinding;
 import com.zonghong.dict.databinding.ActivityWordListBinding;
 import com.zonghong.dict.http.HttpObserver;
 import com.zonghong.dict.utils.SignUtils;

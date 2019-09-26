@@ -1,12 +1,13 @@
 package com.zonghong.dict.base;
+
+import android.databinding.DataBindingUtil;
+import android.databinding.ViewDataBinding;
 import android.os.Bundle;
+import android.support.annotation.LayoutRes;
+import android.support.annotation.Nullable;
+import android.support.v4.app.FragmentActivity;
 import android.view.View;
 
-import androidx.annotation.LayoutRes;
-import androidx.annotation.Nullable;
-import androidx.databinding.DataBindingUtil;
-import androidx.databinding.ViewDataBinding;
-import androidx.fragment.app.FragmentActivity;
 
 import com.qmuiteam.qmui.util.QMUIStatusBarHelper;
 import com.qmuiteam.qmui.widget.dialog.QMUITipDialog;
@@ -70,9 +71,9 @@ public abstract class BaseActivity<T extends ViewDataBinding> extends FragmentAc
     protected void initContentView() {
         binding = DataBindingUtil.setContentView(this, getLayoutId());
         vBack = findViewById(R.id.v_back);
-        if(vBack != null){
-            vBack.setOnClickListener((v)->{
-                if(vBack.getVisibility() == View.VISIBLE){
+        if (vBack != null) {
+            vBack.setOnClickListener((v) -> {
+                if (vBack.getVisibility() == View.VISIBLE) {
                     finish();
                 }
             });
@@ -86,8 +87,8 @@ public abstract class BaseActivity<T extends ViewDataBinding> extends FragmentAc
         }
     }
 
-    protected void setBackVisibility(int v){
-        if(vBack != null){
+    protected void setBackVisibility(int v) {
+        if (vBack != null) {
             vBack.setVisibility(v);
         }
     }
@@ -128,7 +129,7 @@ public abstract class BaseActivity<T extends ViewDataBinding> extends FragmentAc
 
             @Override
             public void onNext(Object o) {
-                if(o.equals("logout")){
+                if (o.equals("logout")) {
                     finish();
                 }
             }

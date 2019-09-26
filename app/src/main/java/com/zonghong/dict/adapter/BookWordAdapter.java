@@ -1,21 +1,18 @@
 package com.zonghong.dict.adapter;
 
+import android.databinding.DataBindingUtil;
 import android.os.Handler;
 import android.os.Message;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.TextView;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.databinding.DataBindingUtil;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.waw.hr.mutils.StringUtils;
 import com.waw.hr.mutils.bean.WordListBean;
 import com.zonghong.dict.R;
-import com.zonghong.dict.databinding.ItemChooseBinding;
-import com.zonghong.dict.databinding.ItemWordBinding;
 import com.zonghong.dict.databinding.ItemWordBookBinding;
 import com.zonghong.dict.utils.TTSUtils;
 

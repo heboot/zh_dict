@@ -1,16 +1,15 @@
 package com.zonghong.dict.activitys;
 
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.http.HttpClient;
 import com.waw.hr.mutils.DialogUtils;
 import com.waw.hr.mutils.MKey;
 import com.waw.hr.mutils.base.BaseBean;
 import com.waw.hr.mutils.bean.WordTypeBean;
-import com.zonghong.dict.MAPP;
 import com.zonghong.dict.R;
 import com.zonghong.dict.adapter.ChooseItemAdapter;
 import com.zonghong.dict.base.BaseActivity;
@@ -19,7 +18,6 @@ import com.zonghong.dict.databinding.ActivityChooseBinding;
 import com.zonghong.dict.http.HttpObserver;
 import com.zonghong.dict.utils.SignUtils;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;

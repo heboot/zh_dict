@@ -28,9 +28,9 @@ public class TTSUtils {
         mSpeechSynthesizer.setApiKey(AppKey, AppSecret/*这里只是为了让Demo正常运行使用APIKey,请替换成自己的APIKey*/);
 
         // 不使用压缩传输
-        mSpeechSynthesizer.setParam(SpeechSynthesizer.PARAM_AUDIO_ENCODE, SpeechSynthesizer.AUDIO_ENCODE_PCM);
+//        mSpeechSynthesizer.setParam(SpeechSynthesizer.PARAM_AUDIO_ENCODE, SpeechSynthesizer.AUDIO_ENCODE_PCM);
         mSpeechSynthesizer.setParam(SpeechSynthesizer.PARAM_SPEAKER, "111");
-        mSpeechSynthesizer.setParam(SpeechSynthesizer.PARAM_AUDIO_RATE, SpeechSynthesizer.AUDIO_BITRATE_PCM);
+//        mSpeechSynthesizer.setParam(SpeechSynthesizer.PARAM_AUDIO_RATE, SpeechSynthesizer.AUDIO_BITRATE_PCM);
         mSpeechSynthesizer.setParam(SpeechSynthesizer.PARAM_SPEED, "5");
         mSpeechSynthesizer.setParam(SpeechSynthesizer.PARAM_VOLUME, "15");
         mSpeechSynthesizer.setContext(MAPP.mapp.getCurrentActivity()); // this 是Context的之类，如Activity

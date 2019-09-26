@@ -1,10 +1,10 @@
 package com.zonghong.dict.utils;
 
 import android.content.Context;
+import android.databinding.DataBindingUtil;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 
-import androidx.databinding.DataBindingUtil;
 
 import com.qmuiteam.qmui.layout.QMUILinearLayout;
 import com.zonghong.dict.MAPP;

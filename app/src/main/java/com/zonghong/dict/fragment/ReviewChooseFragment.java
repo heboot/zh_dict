@@ -1,20 +1,17 @@
 package com.zonghong.dict.fragment;
 
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.http.HttpClient;
 import com.waw.hr.mutils.DialogUtils;
 import com.waw.hr.mutils.MKey;
 import com.waw.hr.mutils.base.BaseBean;
-import com.waw.hr.mutils.bean.WordListBean;
 import com.waw.hr.mutils.bean.WordTypeBean;
 import com.zonghong.dict.R;
-import com.zonghong.dict.activitys.ChooseActivity;
 import com.zonghong.dict.activitys.RecordWordActivity;
-import com.zonghong.dict.adapter.ChooseItemAdapter;
 import com.zonghong.dict.adapter.ChooseReviewItemAdapter;
 import com.zonghong.dict.base.BaseFragment;
 import com.zonghong.dict.databinding.ActivityReviewChooseBinding;

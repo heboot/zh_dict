@@ -2,11 +2,11 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/y60">
 
-        <com.daimajia.swipe.SwipeLayout
+        <com.mcxtzhang.swipemenulib.SwipeMenuLayout
             android:id="@+id/slyt_container"
             android:layout_width="match_parent"
             android:layout_height="@dimen/y60"
@@ -14,6 +14,51 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent">
+
+
+            <!-- Surface View Start -->
+            <LinearLayout
+                android:id="@+id/llyt_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+                <!--What you want to show in SurfaceView-->
+                <TextView
+                    android:id="@+id/tv_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/x20"
+                    android:text="universe"
+                    android:textColor="#ff2b2d30"
+                    android:textSize="@dimen/x23"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tv_comment"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/x20"
+                    android:textColor="#ff2b2d30"
+                    android:textSize="@dimen/x23"
+                    android:textStyle="bold"
+                    android:visibility="invisible"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <!--<Button-->
+                <!--android:id="@+id/click"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:text="Click"-->
+                <!--android:visibility="invisible" />-->
+            </LinearLayout>
+            <!-- Surface View End -->
+
 
             <!-- Bottom View Start-->
             <LinearLayout
@@ -56,50 +101,7 @@
 
             </LinearLayout>
             <!-- Bottom View End-->
-
-            <!-- Surface View Start -->
-            <LinearLayout
-                android:id="@+id/llyt_content"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:gravity="center_vertical"
-                android:orientation="horizontal">
-                <!--What you want to show in SurfaceView-->
-                <TextView
-                    android:id="@+id/tv_title"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/x20"
-                    android:text="universe"
-                    android:textColor="#ff2b2d30"
-                    android:textSize="@dimen/x23"
-                    android:textStyle="bold"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:id="@+id/tv_comment"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/x20"
-                    android:textColor="#ff2b2d30"
-                    android:textSize="@dimen/x23"
-                    android:textStyle="bold"
-                    android:visibility="invisible"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <!--<Button-->
-                <!--android:id="@+id/click"-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:text="Click"-->
-                <!--android:visibility="invisible" />-->
-            </LinearLayout>
-            <!-- Surface View End -->
-        </com.daimajia.swipe.SwipeLayout>
+        </com.mcxtzhang.swipemenulib.SwipeMenuLayout>
 
 
         <View
@@ -113,5 +115,5 @@
             app:layout_constraintRight_toRightOf="parent"></View>
 
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </android.support.constraint.ConstraintLayout>
 </layout>

@@ -1,14 +1,12 @@
 package com.zonghong.dict.adapter;
 
-import androidx.annotation.Nullable;
-import androidx.databinding.DataBindingUtil;
+import android.databinding.DataBindingUtil;
+import android.support.annotation.Nullable;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.waw.hr.mutils.bean.WordTypeBean;
-import com.zonghong.dict.MAPP;
 import com.zonghong.dict.R;
-import com.zonghong.dict.activitys.RecordWordActivity;
 import com.zonghong.dict.common.ChooseType;
 import com.zonghong.dict.databinding.ItemChooseBinding;
 import com.zonghong.dict.utils.IntentUtils;

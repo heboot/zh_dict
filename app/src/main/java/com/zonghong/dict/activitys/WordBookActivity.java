@@ -1,8 +1,8 @@
 package com.zonghong.dict.activitys;
 
+import android.support.v7.widget.GridLayoutManager;
 import android.view.View;
 
-import androidx.recyclerview.widget.GridLayoutManager;
 
 import com.example.http.HttpClient;
 import com.waw.hr.mutils.DialogUtils;

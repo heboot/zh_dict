@@ -1,15 +1,12 @@
 package com.zonghong.dict.fragment;
 
 import android.os.Bundle;
+import android.support.v7.widget.GridLayoutManager;
 
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.http.HttpClient;
 import com.waw.hr.mutils.DialogUtils;
 import com.waw.hr.mutils.MKey;
-import com.waw.hr.mutils.StringUtils;
 import com.waw.hr.mutils.base.BaseBean;
 import com.waw.hr.mutils.bean.WordDetailBean;
 import com.waw.hr.mutils.bean.WordListBaseBean;
@@ -17,18 +14,13 @@ import com.waw.hr.mutils.bean.WordListBean;
 import com.zonghong.dict.R;
 import com.zonghong.dict.activitys.RecordWordActivity;
 import com.zonghong.dict.adapter.BookWordAdapter;
-import com.zonghong.dict.adapter.WordAdapter;
 import com.zonghong.dict.base.BaseFragment;
-import com.zonghong.dict.databinding.ActivityWordListBinding;
 import com.zonghong.dict.databinding.FragmentReviewWordListChooseBinding;
 import com.zonghong.dict.http.HttpObserver;
 import com.zonghong.dict.utils.SignUtils;
-import com.zonghong.dict.utils.ToastUtils;
 import com.zonghong.dict.view.AddBookDialog;
 import com.zonghong.dict.view.WordDetailDialog;
 
-import java.io.Serializable;
-import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.List;
 

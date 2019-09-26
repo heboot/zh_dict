@@ -5,7 +5,7 @@ import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
 
-import androidx.databinding.DataBindingUtil;
+import android.databinding.DataBindingUtil;
 
 import com.qmuiteam.qmui.layout.QMUILinearLayout;
 import com.waw.hr.mutils.bean.WordDetailBean;

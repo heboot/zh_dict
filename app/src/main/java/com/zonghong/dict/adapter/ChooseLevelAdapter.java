@@ -1,7 +1,7 @@
 package com.zonghong.dict.adapter;
 
-import androidx.annotation.Nullable;
-import androidx.databinding.DataBindingUtil;
+import android.databinding.DataBindingUtil;
+import android.support.annotation.Nullable;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;

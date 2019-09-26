@@ -2,16 +2,16 @@ package com.zonghong.dict.adapter;
 
 import android.os.Handler;
 import android.os.Message;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.databinding.DataBindingUtil;
+import android.databinding.DataBindingUtil;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
-import com.daimajia.swipe.SwipeLayout;
+import com.mcxtzhang.swipemenulib.SwipeMenuLayout;
 import com.waw.hr.mutils.bean.WordListBean;
 import com.zonghong.dict.R;
 import com.zonghong.dict.databinding.ItemWordBinding;
@@ -58,19 +58,14 @@ public class WordAdapter extends BaseQuickAdapter<WordListBean, BaseViewHolder> 
     @Override
     protected void convert(BaseViewHolder helper, WordListBean item) {
         ItemWordBinding binding = DataBindingUtil.bind(helper.itemView);
-        //set show mode.
-        binding.slytContainer.setShowMode(SwipeLayout.ShowMode.PullOut);
-
-//add drag edge.(If the BottomView has 'layout_gravity' attribute, this line is unnecessary)
-        binding.slytContainer.addDrag(SwipeLayout.DragEdge.Right, binding.slytContainer.findViewById(R.id.bottom_wrapper));
 
         binding.tvDetail.setOnClickListener((v) -> {
-            binding.slytContainer.toggle();
+            ((SwipeMenuLayout) binding.slytContainer).quickClose();
             wordListFragmentWeakReference.get().showDetailView(item.getId());
         });
 
         binding.tvAddBook.setOnClickListener((v) -> {
-            binding.slytContainer.toggle();
+            ((SwipeMenuLayout) binding.slytContainer).quickClose();
             wordListFragmentWeakReference.get().showAddView(item);
         });
         binding.tvTitle.setText(item.getTitle());
