@@ -53,6 +53,7 @@ public class RecordWordActivity extends BaseActivity<ActivityRecordIndexBinding>
     @Override
     public void initListener() {
         binding.llytIndex.setOnClickListener((v) -> {
+            isShiji = false;
             mDelegate.showHideFragment(shijiChooseFragment, currentFragment);
             currentFragment = shijiChooseFragment;
             binding.ivIndex.setBackgroundResource(R.mipmap.icon_shiji);
@@ -73,19 +74,23 @@ public class RecordWordActivity extends BaseActivity<ActivityRecordIndexBinding>
 
     public void showShijiWordListFragment(String tid) {
         isShiji = true;
-        shijiWordListFragment = ShijiWordListFragment.newInstance(tid);
+            shijiWordListFragment = ShijiWordListFragment.newInstance(tid);
+//        mDelegate.showHideFragment(shijiWordListFragment,currentFragment);
         mDelegate.start(shijiWordListFragment);
+//        shijiChooseFragment.refreshData(tid);
         currentFragment = shijiWordListFragment;
     }
 
     public void showReviewWordListChooseFragment(String typeId) {
         reviewWordListChooseFragment = ReviewWordListChooseFragment.newInstance(typeId);
+//        mDelegate.showHideFragment(reviewWordListChooseFragment,currentFragment);
         mDelegate.start(reviewWordListChooseFragment);
         currentFragment = reviewWordListChooseFragment;
     }
 
     public void showReviewWordListChooseFragment(List<WordListBean> wordListBeans) {
         reviewWordListFragment = ShijiWordListFragment.newInstance(wordListBeans);
+//        mDelegate.showHideFragment(reviewWordListFragment,currentFragment);
         mDelegate.start(reviewWordListFragment);
         currentFragment = reviewWordListFragment;
     }

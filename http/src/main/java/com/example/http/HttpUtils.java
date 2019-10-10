@@ -199,12 +199,13 @@ public class HttpUtils {
             // Create an ssl socket factory with our all-trusting manager
             SSLSocketFactory sslSocketFactory = sslContext.getSocketFactory();
             OkHttpClient.Builder okBuilder = new OkHttpClient.Builder();
-            okBuilder.readTimeout(20, TimeUnit.SECONDS);
+            okBuilder.readTimeout(10, TimeUnit.SECONDS);
             okBuilder.connectTimeout(10, TimeUnit.SECONDS);
-            okBuilder.writeTimeout(20, TimeUnit.SECONDS);
+            okBuilder.writeTimeout(10, TimeUnit.SECONDS);
 //            okBuilder.addInterceptor(new HttpHeadInterceptor());
 //            okBuilder.addInterceptor(getInterceptor());
             okBuilder.addNetworkInterceptor(getInterceptor());
+//            okBuilder.retryOnConnectionFailure(true);
             okBuilder.hostnameVerifier(new HostnameVerifier() {
                 @Override
                 public boolean verify(String hostname, SSLSession session) {

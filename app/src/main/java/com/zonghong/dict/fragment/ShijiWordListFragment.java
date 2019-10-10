@@ -199,6 +199,12 @@ public class ShijiWordListFragment extends BaseFragment<ActivityWordListBinding>
         super.onDestroy();
     }
 
+    public void refreshData(String tid) {
+        typeId = tid;
+        getData();
+    }
+
+
     private void getData() {
         params = SignUtils.getNormalParams();
         params.put(MKey.TYPE_ID, typeId);
@@ -207,16 +213,20 @@ public class ShijiWordListFragment extends BaseFragment<ActivityWordListBinding>
         HttpClient.Builder.getServer().word_read(params).observeOn(AndroidSchedulers.mainThread()).subscribeOn(Schedulers.io()).subscribe(new HttpObserver<WordListBaseBean>() {
             @Override
             public void onSuccess(BaseBean<WordListBaseBean> baseBean) {
+                if (baseBean.getData() == null || baseBean.getData().getList() == null || baseBean.getData().getList().size() == 0) {
+                    ToastUtils.showToast("没有配置单词");
+                    return;
+                }
                 total = baseBean.getData().getNum();
                 binding.tvPageTip.setText("第" + (MAPP.mapp.getCurrentLevelIndex() + 1) + "关/共" + total + "页");
                 if (wordAdapter == null) {
                     wordAdapter = new WordAdapter(baseBean.getData().getList(), new WeakReference(ShijiWordListFragment.this));
                     binding.rvList.setAdapter(wordAdapter);
                 } else {
-                    wordAdapter.getData().clear();
+//                    wordAdapter.getData().clear();
 //                    wordAdapter.notifyDataSetChanged();
                     wordAdapter.setNewData(baseBean.getData().getList());
-                    wordAdapter.notifyDataSetChanged();
+//                    wordAdapter.notifyDataSetChanged();
                 }
             }
 

@@ -18,6 +18,7 @@ import com.zonghong.dict.base.BaseFragment;
 import com.zonghong.dict.databinding.ActivityChooseBinding;
 import com.zonghong.dict.http.HttpObserver;
 import com.zonghong.dict.utils.SignUtils;
+import com.zonghong.dict.utils.ToastUtils;
 
 import java.lang.ref.WeakReference;
 import java.util.List;
@@ -67,28 +68,35 @@ public class ShijiChooseFragment extends BaseFragment<ActivityChooseBinding> {
         });
     }
 
+    public void refreshData(String tid){
+        typeId = tid;
+        getData(tid);
+    }
+
     private void getData(String t) {
         params = SignUtils.getNormalParams();
         params.put(MKey.TYPE_ID, t);
         HttpClient.Builder.getServer().read(params).observeOn(AndroidSchedulers.mainThread()).subscribeOn(Schedulers.io()).subscribe(new HttpObserver<List<WordTypeBean>>() {
             @Override
             public void onSuccess(BaseBean<List<WordTypeBean>> baseBean) {
+                if(baseBean.getData() == null || baseBean.getData().size() == 0){
+                    ToastUtils.showToast("你还没有配置数据");
+                    return;
+                }
                 MAPP.mapp.setLevelList(baseBean.getData());
                 if (chooseItemAdapter == null) {
                     chooseItemAdapter = new ChooseLevelAdapter(baseBean.getData(), new WeakReference(_mActivity));
                     binding.rvList.setAdapter(chooseItemAdapter);
                 } else {
-                    chooseItemAdapter.getData().clear();
-                    chooseItemAdapter.notifyDataSetChanged();
-                    chooseItemAdapter.addData(baseBean.getData());
-                    chooseItemAdapter.notifyDataSetChanged();
+//                    chooseItemAdapter.getData().clear();
+//                    chooseItemAdapter.notifyDataSetChanged();
+                    chooseItemAdapter.setNewData(baseBean.getData());
                 }
             }
 
             @Override
             public void onError(BaseBean<List<WordTypeBean>> baseBean) {
-                tipDialog = DialogUtils.getFailDialog(_mActivity, baseBean.getMsg(), true);
-                tipDialog.show();
+                ToastUtils.showToast(baseBean.getMsg());
             }
         });
     }

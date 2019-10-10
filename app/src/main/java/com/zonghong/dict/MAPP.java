@@ -7,6 +7,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
 
+import com.tencent.bugly.crashreport.CrashReport;
 import com.waw.hr.mutils.bean.WordTypeBean;
 
 import java.util.ArrayList;
@@ -26,6 +27,7 @@ public class MAPP extends Application {
     public void onCreate() {
         super.onCreate();
         mapp = this;
+        CrashReport.initCrashReport(getApplicationContext(), "59316f06b0", false);
         registerActivityLifecycleCallbacks(new ActivityLifecycleCallbacks() {
             @Override
             public void onActivityCreated(@NonNull Activity activity, @Nullable Bundle bundle) {

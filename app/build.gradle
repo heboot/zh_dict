@@ -7,8 +7,8 @@ android {
         applicationId "com.zonghong.dict"
         minSdkVersion 21
         targetSdkVersion 29
-        versionCode 1
-        versionName "1.0"
+        versionCode 200
+        versionName "2.0.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 //
         ndk {
@@ -55,6 +55,8 @@ dependencies {
     implementation project(path: ':http')
     implementation files('libs/com.baidu.tts_2.3.2.20180713_6101c2a.jar')
     api 'com.github.mcxtzhang:SwipeDelMenuLayout:V1.3.0'
+
+    api 'com.tencent.bugly:crashreport:2.2.0'
 //    api "com.daimajia.swipelayout:library:1.2.0@aar"
 
 }

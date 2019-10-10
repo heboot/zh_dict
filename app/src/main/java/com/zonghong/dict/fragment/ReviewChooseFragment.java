@@ -17,6 +17,7 @@ import com.zonghong.dict.base.BaseFragment;
 import com.zonghong.dict.databinding.ActivityReviewChooseBinding;
 import com.zonghong.dict.http.HttpObserver;
 import com.zonghong.dict.utils.SignUtils;
+import com.zonghong.dict.utils.ToastUtils;
 
 import java.util.List;
 
@@ -105,6 +106,10 @@ public class ReviewChooseFragment extends BaseFragment<ActivityReviewChooseBindi
         HttpClient.Builder.getServer().read(params).observeOn(AndroidSchedulers.mainThread()).subscribeOn(Schedulers.io()).subscribe(new HttpObserver<List<WordTypeBean>>() {
             @Override
             public void onSuccess(BaseBean<List<WordTypeBean>> baseBean) {
+                if(baseBean.getData() == null || baseBean.getData().size() == 0){
+                    ToastUtils.showToast("没有配置数据");
+                    return;
+                }
                 if (chooseItemAdapter == null) {
                     chooseItemAdapter = new ChooseReviewItemAdapter(baseBean.getData());
                     binding.rvList.setAdapter(chooseItemAdapter);
@@ -118,8 +123,7 @@ public class ReviewChooseFragment extends BaseFragment<ActivityReviewChooseBindi
 
             @Override
             public void onError(BaseBean<List<WordTypeBean>> baseBean) {
-                tipDialog = DialogUtils.getFailDialog(_mActivity, baseBean.getMsg(), true);
-                tipDialog.show();
+                ToastUtils.showToast(baseBean.getMsg());
             }
         });
     }
