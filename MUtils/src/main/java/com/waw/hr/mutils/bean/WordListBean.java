@@ -21,7 +21,15 @@ public class WordListBean implements Serializable {
 
     private boolean clicked;
 
+    private int pronunciation = 2;
 
+    public int getPronunciation() {
+        return pronunciation;
+    }
+
+    public void setPronunciation(int pronunciation) {
+        this.pronunciation = pronunciation;
+    }
 
     public boolean isCheck() {
         return isCheck;

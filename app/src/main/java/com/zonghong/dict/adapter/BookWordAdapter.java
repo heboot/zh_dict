@@ -78,7 +78,7 @@ public class BookWordAdapter extends BaseQuickAdapter<WordListBean, BaseViewHold
                 binding.container.getBinding().tvTitle.setTag("title");
 
             }
-            TTSUtils.speak(item.getTitle());
+            TTSUtils.speak(item.getTitle(),item.getPronunciation());
         });
         binding.container.getBinding().cb.setOnClickListener(clickListener);
 

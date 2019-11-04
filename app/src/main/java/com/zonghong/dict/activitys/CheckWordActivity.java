@@ -198,7 +198,7 @@ public class CheckWordActivity extends BaseActivity<ActivityWorkCheckBinding> {
             CheckWordLocalBean checkWordLocalBean = new CheckWordLocalBean();
             checkWordLocalBean.setOption(options[i]);
             checkWordLocalBean.setTitle(result[i]);
-            if (result[i].indexOf(checkWordLocalBean.getOption()) > -1) {
+            if (checkWordBean.getResult().indexOf(checkWordLocalBean.getOption()) > -1) {
                 checkWordLocalBean.setCorrect(true);
             } else {
                 checkWordLocalBean.setCorrect(false);

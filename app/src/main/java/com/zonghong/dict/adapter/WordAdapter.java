@@ -80,7 +80,7 @@ public class WordAdapter extends BaseQuickAdapter<WordListBean, BaseViewHolder> 
                 handler.sendEmptyMessageDelayed(item.getId(), 1500);
             }
             item.setClicked(true);
-            TTSUtils.speak(item.getTitle());
+            TTSUtils.speak(item.getTitle(),item.getPronunciation());
         });
 
     }
